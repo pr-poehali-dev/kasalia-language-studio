@@ -16,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
 
 const HERO_IMG =
-  'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/files/aeb8788f-6070-489b-b9c1-8073465ad54d.jpg';
+  'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/files/28005c25-4ec9-4ffc-a16a-484b55742b8d.jpg';
 
 const nav = [
   { label: 'О студии', href: '#about' },
@@ -192,14 +192,7 @@ const Index = () => {
               alt="Дети учат языки в студии Kasalia"
               className="relative rounded-[3rem] shadow-2xl w-full object-cover"
             />
-            {/* Логотип с девушкой поверх по центру */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <img
-                src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/17f23dc2-87e6-415f-8ef3-4ed4815550b5.jpg"
-                alt="Ксения Казакова — Студия Kasalia"
-                className="w-56 h-56 object-contain drop-shadow-2xl animate-wiggle"
-              />
-            </div>
+
             <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 animate-wiggle">
               <span className="text-2xl">🎉</span>
               <div className="leading-tight">
