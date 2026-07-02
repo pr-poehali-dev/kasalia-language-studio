@@ -184,25 +184,22 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center">
-            {/* Дети вокруг */}
-            <div className="absolute -top-4 left-4 text-5xl animate-wiggle">👧</div>
-            <div className="absolute -top-6 right-8 text-4xl animate-float" style={{animationDelay:'0.5s'}}>👦</div>
-            <div className="absolute top-1/4 -left-4 text-5xl animate-wiggle" style={{animationDelay:'0.3s'}}>🧒🏻</div>
-            <div className="absolute top-1/4 -right-4 text-4xl animate-float" style={{animationDelay:'0.8s'}}>👧🏽</div>
-            <div className="absolute bottom-8 -left-2 text-4xl animate-wiggle" style={{animationDelay:'1s'}}>👦🏻</div>
-            <div className="absolute bottom-4 right-2 text-5xl animate-float" style={{animationDelay:'0.2s'}}>👧🏻</div>
-            <div className="absolute -bottom-4 left-1/3 text-4xl animate-wiggle" style={{animationDelay:'0.7s'}}>🧒</div>
-            {/* Звёздочки */}
-            <div className="absolute top-2 left-1/3 text-2xl animate-float" style={{animationDelay:'0.4s'}}>⭐</div>
-            <div className="absolute top-1/3 right-1/4 text-xl animate-wiggle" style={{animationDelay:'0.9s'}}>✨</div>
-            <div className="absolute bottom-1/4 left-1/4 text-xl animate-float" style={{animationDelay:'1.2s'}}>🌟</div>
-            {/* Логотип по центру */}
+          <div className="relative animate-float">
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-accent/20 to-secondary/20 rounded-[3rem] rotate-6" />
+            {/* Фото детей — фон */}
             <img
-              src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/17f23dc2-87e6-415f-8ef3-4ed4815550b5.jpg"
-              alt="Студия Kasalia — детский языковой центр"
-              className="relative w-4/5 drop-shadow-2xl animate-float"
+              src={HERO_IMG}
+              alt="Дети учат языки в студии Kasalia"
+              className="relative rounded-[3rem] shadow-2xl w-full object-cover"
             />
+            {/* Логотип с девушкой поверх по центру */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <img
+                src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/17f23dc2-87e6-415f-8ef3-4ed4815550b5.jpg"
+                alt="Ксения Казакова — Студия Kasalia"
+                className="w-56 h-56 object-contain drop-shadow-2xl animate-wiggle"
+              />
+            </div>
             <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 animate-wiggle">
               <span className="text-2xl">🎉</span>
               <div className="leading-tight">
