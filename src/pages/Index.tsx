@@ -10,6 +10,10 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+
+const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
 
 const HERO_IMG =
   'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/files/aeb8788f-6070-489b-b9c1-8073465ad54d.jpg';
@@ -160,8 +164,8 @@ const Index = () => {
               удовольствием, а родители видят результат.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="rounded-full text-base font-bold h-14 px-8 hover-scale shadow-lg shadow-primary/30">
-                Записаться на пробный урок
+              <Button size="lg" className="rounded-full text-base font-bold h-14 px-8 hover-scale shadow-lg shadow-primary/30" asChild>
+                <a href="#contacts">Записаться на пробный урок</a>
               </Button>
               <Button
                 size="lg"
@@ -318,25 +322,22 @@ const Index = () => {
 
       {/* Contacts / CTA */}
       <section id="contacts" className="container py-16">
-        <div className="relative rounded-[2.5rem] bg-primary text-primary-foreground p-10 lg:p-16 overflow-hidden">
+        <div className="relative rounded-[2.5rem] bg-primary text-primary-foreground p-8 lg:p-14 overflow-hidden">
           <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-white/10" />
           <div className="absolute right-24 top-6 w-32 h-32 rounded-full bg-accent/40" />
-          <div className="relative max-w-xl">
-            <h2 className="font-display text-4xl font-extrabold mb-4">Запишитесь на бесплатный урок 🎈</h2>
-            <p className="text-lg opacity-90 mb-8">
-              Оставьте контакты — мы подберём удобное время и группу для вашего ребёнка.
-            </p>
-            <div className="flex flex-wrap gap-6 mb-8">
-              <ContactItem icon="MapPin" text="Москва, ул. Языковая, 5" />
-              <ContactItem icon="Phone" text="+7 (900) 123-45-67" />
-              <ContactItem icon="Mail" text="hello@kasalia.ru" />
+          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="font-display text-4xl font-extrabold mb-4">Запишитесь на бесплатный урок 🎈</h2>
+              <p className="text-lg opacity-90 mb-8">
+                Оставьте контакты — мы подберём удобное время и группу для вашего ребёнка.
+              </p>
+              <div className="flex flex-col gap-4">
+                <ContactItem icon="MapPin" text="Москва, ул. Языковая, 5" />
+                <ContactItem icon="Phone" text="+7 (900) 123-45-67" />
+                <ContactItem icon="Mail" text="hello@kasalia.ru" />
+              </div>
             </div>
-            <Button
-              size="lg"
-              className="rounded-full h-14 px-10 text-base font-bold bg-white text-primary hover:bg-white/90 hover-scale"
-            >
-              Оставить заявку
-            </Button>
+            <LeadForm />
           </div>
         </div>
       </section>
@@ -378,6 +379,73 @@ const SectionTitle = ({ emoji, title, subtitle }: { emoji: string; title: string
     <p className="text-muted-foreground mt-2">{subtitle}</p>
   </div>
 );
+
+const LeadForm = () => {
+  const { toast } = useToast();
+  const [form, setForm] = useState({ name: '', phone: '', comment: '' });
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.phone.trim()) {
+      toast({ title: 'Заполните имя и телефон', variant: 'destructive' });
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(LEAD_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      toast({ title: 'Заявка отправлена! 🎉', description: 'Мы свяжемся с вами в ближайшее время.' });
+      setForm({ name: '', phone: '', comment: '' });
+    } catch {
+      toast({ title: 'Не удалось отправить', description: 'Попробуйте позже или позвоните нам.', variant: 'destructive' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className="bg-white rounded-3xl p-6 space-y-4 text-foreground shadow-xl">
+      <div className="space-y-2">
+        <Label htmlFor="lead-name">Имя ребёнка или родителя</Label>
+        <Input
+          id="lead-name"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          placeholder="Как к вам обращаться?"
+          className="rounded-xl h-12"
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="lead-phone">Телефон</Label>
+        <Input
+          id="lead-phone"
+          value={form.phone}
+          onChange={(e) => setForm({ ...form, phone: e.target.value })}
+          placeholder="+7 (___) ___-__-__"
+          className="rounded-xl h-12"
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="lead-comment">Комментарий</Label>
+        <Textarea
+          id="lead-comment"
+          value={form.comment}
+          onChange={(e) => setForm({ ...form, comment: e.target.value })}
+          placeholder="Возраст ребёнка, желаемый язык..."
+          className="rounded-xl min-h-[80px]"
+        />
+      </div>
+      <Button type="submit" disabled={loading} className="w-full rounded-xl h-12 font-bold text-base">
+        {loading ? 'Отправляем...' : 'Оставить заявку'}
+      </Button>
+    </form>
+  );
+};
 
 const ContactItem = ({ icon, text }: { icon: string; text: string }) => (
   <div className="flex items-center gap-2 font-semibold">
