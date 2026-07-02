@@ -32,22 +32,24 @@ const courses = [
   {
     lang: 'Английский',
     icon: 'Sparkles',
-    color: 'bg-primary',
-    tint: 'bg-primary/10',
+    color: 'bg-primary text-primary-foreground',
+    tint: 'bg-gradient-to-br from-primary/20 to-accent/30',
     text: 'text-primary',
     emoji: '🇬🇧',
     groups: 'Дошкольники 4–6 · Школьники 7–14',
     desc: 'Игровые занятия, песни, ролевые игры и живое общение с носителями культуры.',
+    border: 'border-primary/20',
   },
   {
     lang: 'Китайский',
     icon: 'Languages',
-    color: 'bg-secondary',
-    tint: 'bg-secondary/10',
+    color: 'bg-secondary text-secondary-foreground',
+    tint: 'bg-gradient-to-br from-secondary/20 to-purple/20',
     text: 'text-secondary',
     emoji: '🇨🇳',
     groups: 'Дошкольники 5–6 · Школьники 7–14',
     desc: 'Иероглифы через рисунки, интонации через музыку и культуру Поднебесной.',
+    border: 'border-secondary/20',
   },
 ];
 
@@ -101,10 +103,10 @@ const Index = () => {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
         <div className="container flex items-center justify-between py-4">
           <a href="#" className="flex items-center gap-2">
-            <span className="grid place-items-center w-11 h-11 rounded-2xl bg-primary text-primary-foreground font-display font-extrabold text-xl rotate-3">
+            <span className="logo-box grid place-items-center w-12 h-12 rounded-2xl text-white font-display font-extrabold text-2xl rotate-3 select-none">
               K
             </span>
-            <span className="font-display text-2xl font-extrabold tracking-tight">Kasalia</span>
+            <span className="logo-gradient font-display text-3xl font-extrabold tracking-tight">Kasalia</span>
           </a>
 
           <nav className="hidden lg:flex items-center gap-7">
@@ -147,8 +149,9 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative">
-        <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-accent/30 blur-3xl" />
-        <div className="absolute top-40 right-0 w-72 h-72 rounded-full bg-secondary/20 blur-3xl" />
+        <div className="absolute -top-10 -left-10 w-72 h-72 rounded-full bg-accent/40 blur-3xl" />
+        <div className="absolute top-40 right-0 w-80 h-80 rounded-full bg-secondary/30 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 w-56 h-56 rounded-full bg-purple/20 blur-3xl" />
         <div className="container grid lg:grid-cols-2 gap-10 items-center py-16 lg:py-24 relative">
           <div className="animate-fade-in">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/40 text-sm font-bold mb-6">
@@ -202,16 +205,17 @@ const Index = () => {
       </section>
 
       {/* About */}
-      <section id="about" className="container py-16">
+      <section id="about" className="py-16 section-teal">
+        <div className="container">
         <div className="grid md:grid-cols-4 gap-5">
           {[
-            { icon: 'Gamepad2', t: 'Через игру', d: 'Песни, квесты и ролевые игры вместо зубрёжки', c: 'text-primary' },
-            { icon: 'Users', t: 'Мини-группы', d: 'До 6 детей — внимание каждому ученику', c: 'text-secondary' },
-            { icon: 'Globe', t: 'Носители языка', d: 'Живое произношение с первых занятий', c: 'text-purple' },
-            { icon: 'Trophy', t: 'Результат', d: 'Прогресс виден уже через месяц', c: 'text-pink' },
+            { icon: 'Gamepad2', t: 'Через игру', d: 'Песни, квесты и ролевые игры вместо зубрёжки', c: 'text-primary', bg: 'bg-primary/15' },
+            { icon: 'Users', t: 'Мини-группы', d: 'До 6 детей — внимание каждому ученику', c: 'text-secondary', bg: 'bg-secondary/15' },
+            { icon: 'Globe', t: 'Носители языка', d: 'Живое произношение с первых занятий', c: 'text-purple', bg: 'bg-purple/15' },
+            { icon: 'Trophy', t: 'Результат', d: 'Прогресс виден уже через месяц', c: 'text-pink', bg: 'bg-pink/15' },
           ].map((f) => (
-            <div key={f.t} className="bg-card rounded-3xl p-6 border border-border/50 hover-scale shadow-sm">
-              <div className={`w-14 h-14 rounded-2xl bg-muted grid place-items-center mb-4 ${f.c}`}>
+            <div key={f.t} className="bg-white rounded-3xl p-6 border-2 border-white card-hover shadow-md">
+              <div className={`w-14 h-14 rounded-2xl ${f.bg} grid place-items-center mb-4 ${f.c}`}>
                 <Icon name={f.icon} size={28} />
               </div>
               <h3 className="font-display font-bold text-lg mb-1">{f.t}</h3>
@@ -219,18 +223,20 @@ const Index = () => {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Courses */}
-      <section id="courses" className="container py-16">
+      <section id="courses" className="py-16">
+        <div className="container">
         <SectionTitle emoji="📚" title="Наши курсы" subtitle="Выбери язык — открой новый мир" />
         <div className="grid md:grid-cols-2 gap-6">
           {courses.map((c) => (
             <div
               key={c.lang}
-              className="relative rounded-[2rem] p-8 border border-border/50 bg-card overflow-hidden hover-scale shadow-sm"
+              className={`relative rounded-[2rem] p-8 overflow-hidden card-hover shadow-md bg-white border-2 ${c.border}`}
             >
-              <div className={`absolute -right-8 -top-8 w-40 h-40 rounded-full ${c.tint}`} />
+              <div className={`absolute -right-8 -top-8 w-48 h-48 rounded-full ${c.tint}`} />
               <span className="text-5xl mb-4 block relative">{c.emoji}</span>
               <h3 className="font-display text-3xl font-extrabold mb-2 relative">{c.lang}</h3>
               <p className={`font-bold text-sm mb-3 relative ${c.text}`}>{c.groups}</p>
@@ -241,14 +247,16 @@ const Index = () => {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Teachers */}
-      <section id="teachers" className="container py-16">
+      <section id="teachers" className="py-16 section-yellow">
+        <div className="container">
         <SectionTitle emoji="🧑‍🏫" title="Преподаватели" subtitle="Добрые, весёлые и очень опытные" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {teachers.map((t) => (
-            <div key={t.name} className="bg-card rounded-3xl p-6 text-center border border-border/50 hover-scale shadow-sm">
+            <div key={t.name} className="bg-white rounded-3xl p-6 text-center border-2 border-white card-hover shadow-md">
               <div className={`w-24 h-24 mx-auto rounded-full ${t.color} grid place-items-center text-5xl mb-4`}>
                 {t.emoji}
               </div>
@@ -257,16 +265,18 @@ const Index = () => {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Schedule */}
-      <section id="schedule" className="container py-16">
+      <section id="schedule" className="py-16 section-purple">
+        <div className="container">
         <SectionTitle emoji="🗓️" title="Расписание" subtitle="Удобное время для будней и выходных" />
-        <div className="bg-card rounded-[2rem] border border-border/50 overflow-hidden shadow-sm">
+        <div className="bg-white rounded-[2rem] border-2 border-white overflow-hidden shadow-md">
           {schedule.map((s, i) => (
             <div
               key={i}
-              className="flex items-center gap-4 p-5 border-b border-border/50 last:border-0 hover:bg-muted/50 transition-colors"
+              className="flex items-center gap-4 p-5 border-b border-border/30 last:border-0 hover:bg-purple/5 transition-colors"
             >
               <span className="w-20 font-bold text-sm text-muted-foreground">{s.day}</span>
               <span className={`font-display text-2xl font-extrabold w-20 ${s.color}`}>{s.time}</span>
@@ -277,14 +287,16 @@ const Index = () => {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Reviews */}
-      <section id="reviews" className="container py-16">
+      <section id="reviews" className="py-16 section-teal">
+        <div className="container">
         <SectionTitle emoji="⭐" title="Отзывы родителей" subtitle="Нам доверяют самое дорогое" />
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((r) => (
-            <div key={r.name} className="bg-card rounded-3xl p-7 border border-border/50 shadow-sm">
+            <div key={r.name} className="bg-white rounded-3xl p-7 border-2 border-white card-hover shadow-md">
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: r.stars }).map((_, i) => (
                   <Icon key={i} name="Star" size={18} className="text-accent fill-accent" />
@@ -298,17 +310,19 @@ const Index = () => {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* Blog */}
-      <section id="blog" className="container py-16">
+      <section id="blog" className="py-16 section-yellow">
+        <div className="container">
         <SectionTitle emoji="✍️" title="Блог студии" subtitle="Полезное для детей и родителей" />
         <div className="grid md:grid-cols-3 gap-6">
           {blog.map((b) => (
             <a
               key={b.title}
               href="#"
-              className="group bg-card rounded-3xl p-7 border border-border/50 hover-scale shadow-sm block"
+              className="group bg-white rounded-3xl p-7 border-2 border-white card-hover shadow-md block"
             >
               <span className="text-4xl mb-4 block">{b.emoji}</span>
               <span className="text-xs font-bold uppercase tracking-wide text-primary">{b.tag}</span>
@@ -317,6 +331,7 @@ const Index = () => {
               </h3>
             </a>
           ))}
+        </div>
         </div>
       </section>
 
@@ -346,10 +361,10 @@ const Index = () => {
       <footer className="border-t border-border/50 py-10">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="grid place-items-center w-9 h-9 rounded-xl bg-primary text-primary-foreground font-display font-extrabold">
+            <span className="logo-box grid place-items-center w-9 h-9 rounded-xl text-white font-display font-extrabold rotate-3">
               K
             </span>
-            <span className="font-display font-extrabold text-lg">Kasalia</span>
+            <span className="logo-gradient font-display font-extrabold text-xl">Kasalia</span>
           </div>
           <p className="text-sm text-muted-foreground">© 2026 Языковая студия Kasalia. Учим с любовью.</p>
           <div className="flex gap-3">

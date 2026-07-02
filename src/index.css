@@ -125,6 +125,47 @@
   .hover-scale {
     @apply transition-transform duration-300 hover:scale-105;
   }
+  .logo-gradient {
+    background: linear-gradient(
+      135deg,
+      #ff5e3a 0%,
+      #ff9f0a 28%,
+      #30d158 55%,
+      #0a84ff 78%,
+      #bf5af2 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .logo-box {
+    background: linear-gradient(135deg, #ff5e3a, #ff9f0a, #bf5af2);
+    box-shadow: 0 6px 24px rgba(255, 94, 58, 0.45);
+  }
+  .section-teal {
+    background: linear-gradient(
+      160deg,
+      hsl(175 55% 90%) 0%,
+      hsl(185 40% 96%) 100%
+    );
+  }
+  .section-yellow {
+    background: linear-gradient(
+      160deg,
+      hsl(45 100% 90%) 0%,
+      hsl(38 80% 96%) 100%
+    );
+  }
+  .section-purple {
+    background: linear-gradient(
+      160deg,
+      hsl(265 70% 92%) 0%,
+      hsl(280 50% 97%) 100%
+    );
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.03] hover:shadow-lg;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
