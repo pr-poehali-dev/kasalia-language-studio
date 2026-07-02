@@ -54,10 +54,7 @@ const courses = [
 ];
 
 const teachers = [
-  { name: 'Мария Соколова', role: 'Английский · дошкольники', emoji: '👩‍🏫', color: 'bg-primary/10' },
-  { name: 'Ли Вэй', role: 'Китайский · носитель языка', emoji: '🧑‍🏫', color: 'bg-secondary/10' },
-  { name: 'Анна Петрова', role: 'Английский · школьники', emoji: '👩‍🎓', color: 'bg-accent/20' },
-  { name: 'Дэвид Смит', role: 'Английский · носитель', emoji: '🧑‍💼', color: 'bg-purple/10' },
+  { name: 'Казакова Ксения Фёдоровна', role: 'Английский · Китайский · 2–7 лет', emoji: '👩‍🏫', color: 'bg-primary/10' },
 ];
 
 const schedule = [
@@ -180,9 +177,9 @@ const Index = () => {
               </Button>
             </div>
             <div className="flex items-center gap-6 mt-10">
-              <Stat value="500+" label="учеников" />
-              <Stat value="12" label="преподавателей" />
-              <Stat value="8 лет" label="опыта" />
+              <Stat value="50+" label="учеников" />
+              <Stat value="6 лет" label="опыта" />
+              <Stat value="2–7" label="лет детям" />
             </div>
           </div>
 
@@ -254,14 +251,14 @@ const Index = () => {
       <section id="teachers" className="py-16 section-yellow">
         <div className="container">
         <SectionTitle emoji="🧑‍🏫" title="Преподаватели" subtitle="Добрые, весёлые и очень опытные" />
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="flex justify-center">
           {teachers.map((t) => (
-            <div key={t.name} className="bg-white rounded-3xl p-6 text-center border-2 border-white card-hover shadow-md">
-              <div className={`w-24 h-24 mx-auto rounded-full ${t.color} grid place-items-center text-5xl mb-4`}>
+            <div key={t.name} className="bg-white rounded-3xl p-10 text-center border-2 border-white card-hover shadow-md max-w-sm w-full">
+              <div className={`w-32 h-32 mx-auto rounded-full ${t.color} grid place-items-center text-6xl mb-5`}>
                 {t.emoji}
               </div>
-              <h3 className="font-display font-bold text-lg">{t.name}</h3>
-              <p className="text-sm text-muted-foreground">{t.role}</p>
+              <h3 className="font-display font-bold text-2xl">{t.name}</h3>
+              <p className="text-muted-foreground mt-2">{t.role}</p>
             </div>
           ))}
         </div>
@@ -347,9 +344,9 @@ const Index = () => {
                 Оставьте контакты — мы подберём удобное время и группу для вашего ребёнка.
               </p>
               <div className="flex flex-col gap-4">
-                <ContactItem icon="MapPin" text="Москва, ул. Языковая, 5" />
-                <ContactItem icon="Phone" text="+7 (900) 123-45-67" />
-                <ContactItem icon="Mail" text="hello@kasalia.ru" />
+                <ContactItem icon="MapPin" text="Томск, ул. Никитина, 15а" />
+                <ContactItem icon="Phone" text="+7 (913) 850-33-38" />
+                <ContactItem icon="Mail" text="kasalia@yandex.ru" />
               </div>
             </div>
             <LeadForm />
