@@ -99,11 +99,12 @@ const Index = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
         <div className="container flex items-center justify-between py-4">
-          <a href="#" className="flex items-center gap-2">
-            <span className="logo-box grid place-items-center w-12 h-12 rounded-2xl text-white font-display font-extrabold text-2xl rotate-3 select-none">
-              K
-            </span>
-            <span className="logo-gradient font-display text-3xl font-extrabold tracking-tight">Kasalia</span>
+          <a href="#" className="flex items-center">
+            <img
+              src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/4fc5576b-3629-4a6b-aaae-c60e197389cd.jpg"
+              alt="Студия Kasalia"
+              className="h-14 w-auto object-contain"
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-7">
@@ -250,18 +251,55 @@ const Index = () => {
       {/* Teachers */}
       <section id="teachers" className="py-16 section-yellow">
         <div className="container">
-        <SectionTitle emoji="🧑‍🏫" title="Преподаватели" subtitle="Добрые, весёлые и очень опытные" />
-        <div className="flex justify-center">
-          {teachers.map((t) => (
-            <div key={t.name} className="p-10 text-center border-2 border-white card-hover shadow-md max-w-sm w-full bg-lime-500 rounded-[0.25rem]">
-              <div className={`w-32 h-32 mx-auto rounded-full ${t.color} grid place-items-center text-6xl mb-5`}>
-                {t.emoji}
-              </div>
-              <h3 className="font-display font-bold text-2xl">{t.name}</h3>
-              <p className="text-muted-foreground mt-2">{t.role}</p>
+          <SectionTitle emoji="🧑‍🏫" title="Преподаватели" subtitle="Добрые, весёлые и очень опытные" />
+          <div className="relative flex items-center justify-center" style={{ minHeight: 420 }}>
+            {/* Дети вокруг — верхний ряд */}
+            <div className="absolute top-0 left-1/2 -translate-x-[160px] flex flex-col items-center gap-1">
+              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👧</span>
+              <span className="text-xs font-bold text-muted-foreground">Соня, 5 лет</span>
             </div>
-          ))}
-        </div>
+            <div className="absolute top-0 left-1/2 translate-x-[96px] flex flex-col items-center gap-1">
+              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👦</span>
+              <span className="text-xs font-bold text-muted-foreground">Миша, 6 лет</span>
+            </div>
+            {/* Левый ряд */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-[260px] -translate-y-[30px] flex flex-col items-center gap-1">
+              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👧🏻</span>
+              <span className="text-xs font-bold text-muted-foreground">Лера, 4 года</span>
+            </div>
+            {/* Правый ряд */}
+            <div className="absolute left-1/2 top-1/2 translate-x-[196px] -translate-y-[30px] flex flex-col items-center gap-1">
+              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">🧒</span>
+              <span className="text-xs font-bold text-muted-foreground">Артём, 7 лет</span>
+            </div>
+            {/* Нижний ряд */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-[160px] flex flex-col items-center gap-1">
+              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👦🏻</span>
+              <span className="text-xs font-bold text-muted-foreground">Дима, 5 лет</span>
+            </div>
+            <div className="absolute bottom-0 left-1/2 translate-x-[96px] flex flex-col items-center gap-1">
+              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👧🏽</span>
+              <span className="text-xs font-bold text-muted-foreground">Вика, 6 лет</span>
+            </div>
+            {/* Центр — фото преподавателя */}
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-white shadow-2xl ring-4 ring-primary/30">
+                <img
+                  src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/4fc5576b-3629-4a6b-aaae-c60e197389cd.jpg"
+                  alt="Казакова Ксения Фёдоровна"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="mt-5 text-center bg-white rounded-3xl px-8 py-4 shadow-lg">
+                <h3 className="font-display font-bold text-2xl">Казакова Ксения Фёдоровна</h3>
+                <p className="text-muted-foreground mt-1">Английский · Китайский · дети 2–7 лет</p>
+                <div className="flex gap-2 justify-center mt-3">
+                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">Английский</span>
+                  <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold">Китайский</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -357,11 +395,12 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border/50 py-10">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="logo-box grid place-items-center w-9 h-9 rounded-xl text-white font-display font-extrabold rotate-3">
-              K
-            </span>
-            <span className="logo-gradient font-display font-extrabold text-xl">Kasalia</span>
+          <div className="flex items-center">
+            <img
+              src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/4fc5576b-3629-4a6b-aaae-c60e197389cd.jpg"
+              alt="Студия Kasalia"
+              className="h-10 w-auto object-contain"
+            />
           </div>
           <p className="text-sm text-muted-foreground">© 2026 Языковая студия Kasalia. Учим с любовью.</p>
           <div className="flex gap-3">
