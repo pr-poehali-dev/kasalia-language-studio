@@ -16,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
 
 const HERO_IMG =
-  'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/files/28005c25-4ec9-4ffc-a16a-484b55742b8d.jpg';
+  'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/17f23dc2-87e6-415f-8ef3-4ed4815550b5.jpg';
 
 const nav = [
   { label: 'О студии', href: '#about' },
