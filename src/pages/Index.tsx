@@ -253,7 +253,7 @@ const Index = () => {
         <SectionTitle emoji="🧑‍🏫" title="Преподаватели" subtitle="Добрые, весёлые и очень опытные" />
         <div className="flex justify-center">
           {teachers.map((t) => (
-            <div key={t.name} className="bg-white rounded-3xl p-10 text-center border-2 border-white card-hover shadow-md max-w-sm w-full">
+            <div key={t.name} className="p-10 text-center border-2 border-white card-hover shadow-md max-w-sm w-full bg-lime-500 rounded-[0.25rem]">
               <div className={`w-32 h-32 mx-auto rounded-full ${t.color} grid place-items-center text-6xl mb-5`}>
                 {t.emoji}
               </div>
