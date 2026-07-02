@@ -203,7 +203,7 @@ const Index = () => {
       </section>
 
       {/* About */}
-      <section id="about" className="py-16 section-teal">
+      <section id="about" className="py-16 section-pink">
         <div className="container">
         <div className="grid md:grid-cols-4 gap-5">
           {[
@@ -249,54 +249,23 @@ const Index = () => {
       </section>
 
       {/* Teachers */}
-      <section id="teachers" className="py-16 section-yellow">
+      <section id="teachers" className="py-16 section-teal">
         <div className="container">
           <SectionTitle emoji="🧑‍🏫" title="Преподаватели" subtitle="Добрые, весёлые и очень опытные" />
-          <div className="relative flex items-center justify-center" style={{ minHeight: 420 }}>
-            {/* Дети вокруг — верхний ряд */}
-            <div className="absolute top-0 left-1/2 -translate-x-[160px] flex flex-col items-center gap-1">
-              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👧</span>
-              <span className="text-xs font-bold text-muted-foreground">Соня, 5 лет</span>
-            </div>
-            <div className="absolute top-0 left-1/2 translate-x-[96px] flex flex-col items-center gap-1">
-              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👦</span>
-              <span className="text-xs font-bold text-muted-foreground">Миша, 6 лет</span>
-            </div>
-            {/* Левый ряд */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-[260px] -translate-y-[30px] flex flex-col items-center gap-1">
-              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👧🏻</span>
-              <span className="text-xs font-bold text-muted-foreground">Лера, 4 года</span>
-            </div>
-            {/* Правый ряд */}
-            <div className="absolute left-1/2 top-1/2 translate-x-[196px] -translate-y-[30px] flex flex-col items-center gap-1">
-              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">🧒</span>
-              <span className="text-xs font-bold text-muted-foreground">Артём, 7 лет</span>
-            </div>
-            {/* Нижний ряд */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-[160px] flex flex-col items-center gap-1">
-              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👦🏻</span>
-              <span className="text-xs font-bold text-muted-foreground">Дима, 5 лет</span>
-            </div>
-            <div className="absolute bottom-0 left-1/2 translate-x-[96px] flex flex-col items-center gap-1">
-              <span className="text-5xl bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">👧🏽</span>
-              <span className="text-xs font-bold text-muted-foreground">Вика, 6 лет</span>
-            </div>
-            {/* Центр — фото преподавателя */}
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-white shadow-2xl ring-4 ring-primary/30">
+          <div className="flex justify-center">
+            <div className="bg-white rounded-3xl p-10 text-center border-2 border-white card-hover shadow-md max-w-sm w-full">
+              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-primary/20 shadow-lg mb-5">
                 <img
                   src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/4fc5576b-3629-4a6b-aaae-c60e197389cd.jpg"
                   alt="Казакова Ксения Фёдоровна"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              <div className="mt-5 text-center bg-white rounded-3xl px-8 py-4 shadow-lg">
-                <h3 className="font-display font-bold text-2xl">Казакова Ксения Фёдоровна</h3>
-                <p className="text-muted-foreground mt-1">Английский · Китайский · дети 2–7 лет</p>
-                <div className="flex gap-2 justify-center mt-3">
-                  <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">Английский</span>
-                  <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold">Китайский</span>
-                </div>
+              <h3 className="font-display font-bold text-2xl">Казакова Ксения Фёдоровна</h3>
+              <p className="text-muted-foreground mt-2">Английский · Китайский · 2–7 лет</p>
+              <div className="flex gap-2 justify-center mt-4">
+                <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">Английский</span>
+                <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold">Китайский</span>
               </div>
             </div>
           </div>
@@ -326,7 +295,7 @@ const Index = () => {
       </section>
 
       {/* Reviews */}
-      <section id="reviews" className="py-16 section-teal">
+      <section id="reviews" className="py-16 section-pink">
         <div className="container">
         <SectionTitle emoji="⭐" title="Отзывы родителей" subtitle="Нам доверяют самое дорогое" />
         <div className="grid md:grid-cols-3 gap-6">
@@ -349,7 +318,7 @@ const Index = () => {
       </section>
 
       {/* Blog */}
-      <section id="blog" className="py-16 section-yellow">
+      <section id="blog" className="py-16 section-teal">
         <div className="container">
         <SectionTitle emoji="✍️" title="Блог студии" subtitle="Полезное для детей и родителей" />
         <div className="grid md:grid-cols-3 gap-6">

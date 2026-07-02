@@ -13,27 +13,27 @@
     --popover: 0 0% 100%;
     --popover-foreground: 250 30% 18%;
 
-    --primary: 15 90% 60%;
+    --primary: 333 75% 57%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 175 65% 45%;
+    --secondary: 92 50% 52%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 40 30% 94%;
-    --muted-foreground: 250 12% 45%;
+    --muted: 320 30% 96%;
+    --muted-foreground: 270 12% 45%;
 
-    --accent: 45 100% 60%;
-    --accent-foreground: 250 30% 18%;
+    --accent: 270 45% 63%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 15 90% 60%;
+    --border: 320 20% 88%;
+    --input: 320 20% 88%;
+    --ring: 333 75% 57%;
 
-    --purple: 265 70% 62%;
-    --pink: 335 80% 65%;
+    --purple: 270 45% 63%;
+    --pink: 333 75% 57%;
 
     --radius: 1rem;
 
@@ -126,41 +126,42 @@
     @apply transition-transform duration-300 hover:scale-105;
   }
   .logo-gradient {
-    background: linear-gradient(
-      135deg,
-      #ff5e3a 0%,
-      #ff9f0a 28%,
-      #30d158 55%,
-      #0a84ff 78%,
-      #bf5af2 100%
-    );
+    background: linear-gradient(135deg, #e8478b 0%, #a078c8 50%, #7ec640 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .logo-box {
-    background: linear-gradient(135deg, #ff5e3a, #ff9f0a, #bf5af2);
-    box-shadow: 0 6px 24px rgba(255, 94, 58, 0.45);
+    background: linear-gradient(135deg, #e8478b, #a078c8);
+    box-shadow: 0 6px 24px rgba(232, 71, 139, 0.4);
+  }
+  /* Из логотипа: розовый, сиреневый, зелёный */
+  .section-pink {
+    background: linear-gradient(
+      160deg,
+      hsl(333 80% 95%) 0%,
+      hsl(333 60% 98%) 100%
+    );
   }
   .section-teal {
     background: linear-gradient(
       160deg,
-      hsl(175 55% 90%) 0%,
-      hsl(185 40% 96%) 100%
+      hsl(92 55% 92%) 0%,
+      hsl(92 40% 97%) 100%
     );
   }
   .section-yellow {
     background: linear-gradient(
       160deg,
-      hsl(45 100% 90%) 0%,
-      hsl(38 80% 96%) 100%
+      hsl(270 50% 94%) 0%,
+      hsl(270 40% 97%) 100%
     );
   }
   .section-purple {
     background: linear-gradient(
       160deg,
-      hsl(265 70% 92%) 0%,
-      hsl(280 50% 97%) 100%
+      hsl(270 50% 93%) 0%,
+      hsl(280 40% 97%) 100%
     );
   }
   .card-hover {
