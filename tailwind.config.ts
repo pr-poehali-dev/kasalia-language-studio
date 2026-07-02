@@ -52,6 +52,8 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				purple: 'hsl(var(--purple))',
+				pink: 'hsl(var(--pink))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +69,10 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				display: ['Baloo 2', 'cursive'],
+				sans: ['Nunito', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {
