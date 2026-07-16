@@ -1,0 +1,1 @@
+UPDATE schedule SET course = 'Мини-сад', updated_at = now() WHERE id = 6;
