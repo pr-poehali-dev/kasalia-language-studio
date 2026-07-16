@@ -117,6 +117,7 @@ const blog = [
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState('');
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -265,8 +266,14 @@ const Index = () => {
               <h3 className="font-display text-3xl font-extrabold mb-2 relative">{c.lang}</h3>
               <p className={`font-bold text-sm mb-3 relative ${c.text}`}>{c.groups}</p>
               <p className="text-muted-foreground mb-6 relative">{c.desc}</p>
-              <Button className={`rounded-full font-bold relative ${c.color} hover:opacity-90`}>
-                Подробнее <Icon name="ArrowRight" size={18} className="ml-1" />
+              <Button
+                className={`rounded-full font-bold relative ${c.color} hover:opacity-90`}
+                onClick={() => setSelectedCourse(c.lang)}
+                asChild
+              >
+                <a href="#contacts">
+                  Записаться <Icon name="ArrowRight" size={18} className="ml-1" />
+                </a>
               </Button>
             </div>
           ))}
@@ -302,7 +309,7 @@ const Index = () => {
       <section id="schedule" className="py-16 section-purple">
         <div className="container">
         <SectionTitle emoji="🗓️" title="Расписание · август" subtitle="Удобное время для будней и выходных" />
-        <ScheduleList />
+        <ScheduleList onSelect={setSelectedCourse} />
         </div>
       </section>
 
@@ -353,7 +360,7 @@ const Index = () => {
                 <ContactItem icon="Mail" text="kasalia@yandex.ru" />
               </div>
             </div>
-            <LeadForm />
+            <LeadForm selectedCourse={selectedCourse} onCourseChange={setSelectedCourse} />
           </div>
         </div>
       </section>
@@ -397,7 +404,13 @@ const SectionTitle = ({ emoji, title, subtitle }: { emoji: string; title: string
   </div>
 );
 
-const LeadForm = () => {
+const LeadForm = ({
+  selectedCourse,
+  onCourseChange,
+}: {
+  selectedCourse: string;
+  onCourseChange: (v: string) => void;
+}) => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: '', phone: '', comment: '' });
   const [loading, setLoading] = useState(false);
@@ -413,11 +426,12 @@ const LeadForm = () => {
       const res = await fetch(LEAD_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, course: selectedCourse }),
       });
       if (!res.ok) throw new Error();
       toast({ title: 'Заявка отправлена! 🎉', description: 'Мы свяжемся с вами в ближайшее время.' });
       setForm({ name: '', phone: '', comment: '' });
+      onCourseChange('');
     } catch {
       toast({ title: 'Не удалось отправить', description: 'Попробуйте позже или позвоните нам.', variant: 'destructive' });
     } finally {
@@ -448,12 +462,22 @@ const LeadForm = () => {
         />
       </div>
       <div className="space-y-2">
+        <Label htmlFor="lead-course">Интересующий курс</Label>
+        <Input
+          id="lead-course"
+          value={selectedCourse}
+          onChange={(e) => onCourseChange(e.target.value)}
+          placeholder="Например: Английский, Театральные постановки..."
+          className="rounded-xl h-12"
+        />
+      </div>
+      <div className="space-y-2">
         <Label htmlFor="lead-comment">Комментарий</Label>
         <Textarea
           id="lead-comment"
           value={form.comment}
           onChange={(e) => setForm({ ...form, comment: e.target.value })}
-          placeholder="Возраст ребёнка, желаемый язык..."
+          placeholder="Возраст ребёнка, удобное время..."
           className="rounded-xl min-h-[80px]"
         />
       </div>
@@ -471,7 +495,7 @@ const ContactItem = ({ icon, text }: { icon: string; text: string }) => (
   </div>
 );
 
-const ScheduleList = () => {
+const ScheduleList = ({ onSelect }: { onSelect: (course: string) => void }) => {
   const [items, setItems] = useState<ScheduleItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -496,7 +520,13 @@ const ScheduleList = () => {
           <span className="w-24 font-bold text-sm text-muted-foreground">{s.days}</span>
           <span className={`font-display text-xl font-extrabold w-32 ${s.color}`}>{s.time}</span>
           <span className="font-semibold flex-1">{s.course}</span>
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2 hidden sm:flex" asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            className="rounded-full font-bold border-2 hidden sm:flex"
+            onClick={() => onSelect(s.course)}
+            asChild
+          >
             <a href="#contacts">Записаться</a>
           </Button>
         </div>

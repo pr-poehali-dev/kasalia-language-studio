@@ -26,6 +26,7 @@ def handler(event: dict, context) -> dict:
     body = json.loads(event.get('body') or '{}')
     name = (body.get('name') or '').strip()
     phone = (body.get('phone') or '').strip()
+    course = (body.get('course') or '').strip()
     comment = (body.get('comment') or '').strip()
 
     if not name or not phone:
@@ -42,13 +43,14 @@ def handler(event: dict, context) -> dict:
         f'<h2>Новая заявка с сайта Kasalia 🎈</h2>'
         f'<p><b>Имя:</b> {name}</p>'
         f'<p><b>Телефон:</b> {phone}</p>'
+        f'<p><b>Курс:</b> {course or "не указан"}</p>'
         f'<p><b>Комментарий:</b> {comment or "—"}</p>'
     )
 
     payload = json.dumps({
         'from': 'Kasalia <onboarding@resend.dev>',
         'to': [to_email],
-        'subject': f'Новая заявка: {name}',
+        'subject': f'Новая заявка: {name}' + (f' — {course}' if course else ''),
         'html': html,
     }).encode('utf-8')
 
