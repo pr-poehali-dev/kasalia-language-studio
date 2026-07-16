@@ -54,7 +54,7 @@ const courses = [
 ];
 
 const teachers = [
-  { name: 'Казакова Ксения Фёдоровна', role: 'Английский · Китайский · 2–7 лет', emoji: '👩‍🏫', color: 'bg-primary/10' },
+  { name: 'Казакова Ксения Фёдоровна', role: 'Английский · Китайский · 2–14 лет', emoji: '👩‍🏫', color: 'bg-primary/10' },
 ];
 
 const schedule = [
@@ -180,7 +180,7 @@ const Index = () => {
             <div className="flex items-center gap-6 mt-10">
               <Stat value="50+" label="учеников" />
               <Stat value="6 лет" label="опыта" />
-              <Stat value="2–7" label="лет детям" />
+              <Stat value="2–14" label="лет детям" />
             </div>
           </div>
 
@@ -264,7 +264,7 @@ const Index = () => {
                 />
               </div>
               <h3 className="font-display font-bold text-2xl">Казакова Ксения Фёдоровна</h3>
-              <p className="text-muted-foreground mt-2">Английский · Китайский · 2–7 лет</p>
+              <p className="text-muted-foreground mt-2">Английский · Китайский · 2–14 лет</p>
               <div className="flex gap-2 justify-center mt-4">
                 <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">Английский</span>
                 <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-bold">Китайский</span>
