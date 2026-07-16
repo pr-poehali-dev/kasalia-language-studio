@@ -1,0 +1,1 @@
+UPDATE schedule SET sort_order = -1 WHERE course = 'Тест';

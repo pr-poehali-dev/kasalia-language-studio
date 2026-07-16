@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import {
@@ -51,39 +51,41 @@ const courses = [
     desc: 'Иероглифы через рисунки, интонации через музыку и культуру Поднебесной.',
     border: 'border-secondary/20',
   },
+  {
+    lang: 'Театральные постановки',
+    icon: 'Drama',
+    color: 'bg-purple text-white',
+    tint: 'bg-gradient-to-br from-purple/20 to-primary/20',
+    text: 'text-purple',
+    emoji: '🎭',
+    groups: 'Мини-сад 2–6 · Группа выходного дня 1–4 класс',
+    desc: 'Погружение в английский через спектакли, роли и книги — язык через творчество.',
+    border: 'border-purple/20',
+  },
 ];
 
 const teachers = [
   { name: 'Казакова Ксения Фёдоровна', role: 'Английский · Китайский · 2–14 лет', emoji: '👩‍🏫', color: 'bg-primary/10' },
 ];
 
-const schedule = [
-  { day: 'Пн / Ср', time: '16:00', course: 'Английский · малыши', color: 'text-primary' },
-  { day: 'Вт / Чт', time: '17:30', course: 'Китайский · школьники', color: 'text-secondary' },
-  { day: 'Пн / Ср', time: '18:00', course: 'Английский · подростки', color: 'text-primary' },
-  { day: 'Сб', time: '11:00', course: 'Разговорный клуб', color: 'text-purple' },
-];
+const SCHEDULE_URL = 'https://functions.poehali.dev/e1e7212e-ad96-499d-b675-c86e6a8084b9';
+const REVIEWS_URL = 'https://functions.poehali.dev/f1850cc6-69d7-4c87-8bd1-145de1010827';
 
-const reviews = [
-  {
-    name: 'Ольга',
-    kid: 'мама Софии, 6 лет',
-    text: 'София бежит на занятия с восторгом! За полгода запела песни на английском.',
-    stars: 5,
-  },
-  {
-    name: 'Дмитрий',
-    kid: 'папа Артёма, 9 лет',
-    text: 'Китайский казался нам чем-то невозможным. Преподаватели сделали его игрой.',
-    stars: 5,
-  },
-  {
-    name: 'Екатерина',
-    kid: 'мама Вани, 11 лет',
-    text: 'Кабинет ученика — находка. Всегда вижу задания и прогресс сына.',
-    stars: 5,
-  },
-];
+interface ScheduleItem {
+  id: number;
+  days: string;
+  time: string;
+  course: string;
+  color: string;
+}
+
+interface ReviewItem {
+  id: number;
+  name: string;
+  kid: string;
+  text: string;
+  stars: number;
+}
 
 const blog = [
   { tag: 'Советы', title: 'Как влюбить ребёнка в язык с первого урока', emoji: '💡' },
@@ -211,7 +213,7 @@ const Index = () => {
           {[
             { icon: 'Gamepad2', t: 'Через игру', d: 'Песни, квесты и ролевые игры вместо зубрёжки', c: 'text-primary', bg: 'bg-primary/15' },
             { icon: 'Users', t: 'Мини-группы', d: 'До 6 детей — внимание каждому ученику', c: 'text-secondary', bg: 'bg-secondary/15' },
-            { icon: 'Globe', t: 'Носители языка', d: 'Живое произношение с первых занятий', c: 'text-purple', bg: 'bg-purple/15' },
+            { icon: 'Drama', t: 'Театр и книги', d: 'Театральные постановки и погружение в язык через книги', c: 'text-purple', bg: 'bg-purple/15' },
             { icon: 'Trophy', t: 'Результат', d: 'Прогресс виден уже через месяц', c: 'text-pink', bg: 'bg-pink/15' },
           ].map((f) => (
             <div key={f.t} className="bg-white rounded-3xl p-6 border-2 border-white card-hover shadow-md">
@@ -230,7 +232,7 @@ const Index = () => {
       <section id="courses" className="py-16">
         <div className="container">
         <SectionTitle emoji="📚" title="Наши курсы" subtitle="Выбери язык — открой новый мир" />
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {courses.map((c) => (
             <div
               key={c.lang}
@@ -277,22 +279,8 @@ const Index = () => {
       {/* Schedule */}
       <section id="schedule" className="py-16 section-purple">
         <div className="container">
-        <SectionTitle emoji="🗓️" title="Расписание" subtitle="Удобное время для будней и выходных" />
-        <div className="bg-white rounded-[2rem] border-2 border-white overflow-hidden shadow-md">
-          {schedule.map((s, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 p-5 border-b border-border/30 last:border-0 hover:bg-purple/5 transition-colors"
-            >
-              <span className="w-20 font-bold text-sm text-muted-foreground">{s.day}</span>
-              <span className={`font-display text-2xl font-extrabold w-20 ${s.color}`}>{s.time}</span>
-              <span className="font-semibold flex-1">{s.course}</span>
-              <Button variant="outline" size="sm" className="rounded-full font-bold border-2 hidden sm:flex">
-                Записаться
-              </Button>
-            </div>
-          ))}
-        </div>
+        <SectionTitle emoji="🗓️" title="Расписание · август" subtitle="Удобное время для будней и выходных" />
+        <ScheduleList />
         </div>
       </section>
 
@@ -300,22 +288,7 @@ const Index = () => {
       <section id="reviews" className="py-16 section-pink">
         <div className="container">
         <SectionTitle emoji="⭐" title="Отзывы родителей" subtitle="Нам доверяют самое дорогое" />
-        <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((r) => (
-            <div key={r.name} className="bg-white rounded-3xl p-7 border-2 border-white card-hover shadow-md">
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: r.stars }).map((_, i) => (
-                  <Icon key={i} name="Star" size={18} className="text-accent fill-accent" />
-                ))}
-              </div>
-              <p className="mb-6 leading-relaxed">«{r.text}»</p>
-              <div>
-                <p className="font-display font-bold">{r.name}</p>
-                <p className="text-sm text-muted-foreground">{r.kid}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ReviewsList />
         </div>
       </section>
 
@@ -475,6 +448,175 @@ const ContactItem = ({ icon, text }: { icon: string; text: string }) => (
     <span>{text}</span>
   </div>
 );
+
+const ScheduleList = () => {
+  const [items, setItems] = useState<ScheduleItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(SCHEDULE_URL)
+      .then((res) => res.json())
+      .then((data) => setItems(data.items || []))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <div className="text-center text-muted-foreground py-10">Загружаем расписание...</div>;
+  }
+
+  return (
+    <div className="bg-white rounded-[2rem] border-2 border-white overflow-hidden shadow-md">
+      {items.map((s) => (
+        <div
+          key={s.id}
+          className="flex items-center gap-4 p-5 border-b border-border/30 last:border-0 hover:bg-purple/5 transition-colors"
+        >
+          <span className="w-24 font-bold text-sm text-muted-foreground">{s.days}</span>
+          <span className={`font-display text-xl font-extrabold w-32 ${s.color}`}>{s.time}</span>
+          <span className="font-semibold flex-1">{s.course}</span>
+          <Button variant="outline" size="sm" className="rounded-full font-bold border-2 hidden sm:flex" asChild>
+            <a href="#contacts">Записаться</a>
+          </Button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const ReviewsList = () => {
+  const [items, setItems] = useState<ReviewItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const load = () => {
+    setLoading(true);
+    fetch(REVIEWS_URL)
+      .then((res) => res.json())
+      .then((data) => setItems(data.items || []))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  return (
+    <div className="space-y-10">
+      <div className="grid md:grid-cols-3 gap-6">
+        {loading && <p className="text-center text-muted-foreground col-span-3 py-6">Загружаем отзывы...</p>}
+        {!loading && items.length === 0 && (
+          <p className="text-center text-muted-foreground col-span-3 py-6">
+            Пока нет отзывов — станьте первыми! 🎈
+          </p>
+        )}
+        {items.map((r) => (
+          <div key={r.id} className="bg-white rounded-3xl p-7 border-2 border-white card-hover shadow-md">
+            <div className="flex gap-1 mb-4">
+              {Array.from({ length: r.stars }).map((_, i) => (
+                <Icon key={i} name="Star" size={18} className="text-accent fill-accent" />
+              ))}
+            </div>
+            <p className="mb-6 leading-relaxed">«{r.text}»</p>
+            <div>
+              <p className="font-display font-bold">{r.name}</p>
+              <p className="text-sm text-muted-foreground">{r.kid}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <ReviewForm onSubmitted={load} />
+    </div>
+  );
+};
+
+const ReviewForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
+  const { toast } = useToast();
+  const [form, setForm] = useState({ name: '', kid: '', text: '', stars: 5 });
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.text.trim()) {
+      toast({ title: 'Заполните имя и текст отзыва', variant: 'destructive' });
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(REVIEWS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      toast({ title: 'Спасибо! 🎉', description: 'Отзыв появится после проверки модератором.' });
+      setForm({ name: '', kid: '', text: '', stars: 5 });
+      onSubmitted();
+    } catch {
+      toast({ title: 'Не удалось отправить', description: 'Попробуйте позже.', variant: 'destructive' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className="bg-white rounded-3xl p-7 border-2 border-white shadow-md max-w-xl mx-auto space-y-4">
+      <h3 className="font-display font-bold text-xl text-center">Оставьте свой отзыв ✍️</h3>
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="review-name">Ваше имя</Label>
+          <Input
+            id="review-name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            placeholder="Как к вам обращаться?"
+            className="rounded-xl h-12"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="review-kid">Ребёнок</Label>
+          <Input
+            id="review-kid"
+            value={form.kid}
+            onChange={(e) => setForm({ ...form, kid: e.target.value })}
+            placeholder="Имя ребёнка, возраст"
+            className="rounded-xl h-12"
+          />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="review-text">Отзыв</Label>
+        <Textarea
+          id="review-text"
+          value={form.text}
+          onChange={(e) => setForm({ ...form, text: e.target.value })}
+          placeholder="Расскажите, как проходят занятия"
+          className="rounded-xl min-h-[90px]"
+        />
+      </div>
+      <div className="space-y-2">
+        <Label>Оценка</Label>
+        <div className="flex gap-1">
+          {[1, 2, 3, 4, 5].map((n) => (
+            <button
+              type="button"
+              key={n}
+              onClick={() => setForm({ ...form, stars: n })}
+              className="hover-scale"
+            >
+              <Icon
+                name="Star"
+                size={26}
+                className={n <= form.stars ? 'text-accent fill-accent' : 'text-muted-foreground'}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+      <Button type="submit" disabled={loading} className="w-full rounded-xl h-12 font-bold text-base">
+        {loading ? 'Отправляем...' : 'Отправить отзыв'}
+      </Button>
+    </form>
+  );
+};
 
 const StudentCabinet = () => (
   <Dialog>
