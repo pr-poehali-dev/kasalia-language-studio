@@ -9,6 +9,7 @@ import PickHero from "./pages/PickHero";
 import PricePrint from "./pages/PricePrint";
 import CoursesPrint from "./pages/CoursesPrint";
 import SchedulePrint from "./pages/SchedulePrint";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/print/price" element={<PricePrint />} />
           <Route path="/print/courses" element={<CoursesPrint />} />
           <Route path="/print/schedule" element={<SchedulePrint />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

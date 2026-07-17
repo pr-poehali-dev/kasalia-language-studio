@@ -13,6 +13,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
+import { blogPosts } from '@/data/blogPosts';
 
 const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
 
@@ -119,12 +120,6 @@ interface ReviewItem {
   text: string;
   stars: number;
 }
-
-const blog = [
-  { tag: 'Советы', title: 'Как влюбить ребёнка в язык с первого урока', emoji: '💡' },
-  { tag: 'Китайский', title: '5 иероглифов, которые дети запоминают за минуту', emoji: '🀄' },
-  { tag: 'Родителям', title: 'Билингвы: мифы и реальная польза для мозга', emoji: '🧠' },
-];
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -406,10 +401,10 @@ const Index = () => {
         <div className="container">
         <SectionTitle emoji="✍️" title="Блог студии" subtitle="Полезное для детей и родителей" />
         <div className="grid md:grid-cols-3 gap-6">
-          {blog.map((b) => (
-            <a
-              key={b.title}
-              href="#"
+          {blogPosts.map((b) => (
+            <Link
+              key={b.slug}
+              to={`/blog/${b.slug}`}
               className="group bg-white rounded-3xl p-7 border-2 border-white card-hover shadow-md block"
             >
               <span className="text-4xl mb-4 block">{b.emoji}</span>
@@ -417,7 +412,8 @@ const Index = () => {
               <h3 className="font-display font-bold text-lg mt-2 group-hover:text-primary transition-colors">
                 {b.title}
               </h3>
-            </a>
+              <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{b.excerpt}</p>
+            </Link>
           ))}
         </div>
         </div>
