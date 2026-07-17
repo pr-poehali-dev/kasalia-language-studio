@@ -21,11 +21,21 @@ const HERO_IMG =
 const nav = [
   { label: 'О студии', href: '#about' },
   { label: 'Курсы', href: '#courses' },
+  { label: 'Цены', href: '#prices' },
   { label: 'Преподаватели', href: '#teachers' },
   { label: 'Расписание', href: '#schedule' },
   { label: 'Отзывы', href: '#reviews' },
   { label: 'Блог', href: '#blog' },
   { label: 'Контакты', href: '#contacts' },
+];
+
+const prices = [
+  { name: 'Английский · групповое', emoji: '🇬🇧', price: '6 000 ₽', unit: '8 занятий', color: 'text-primary', bg: 'bg-primary/10' },
+  { name: 'Китайский · групповое', emoji: '🇨🇳', price: '6 500 ₽', unit: '8 занятий', color: 'text-secondary', bg: 'bg-secondary/10' },
+  { name: 'Английский · индивидуально', emoji: '🇬🇧', price: '1 100 ₽', unit: 'занятие', color: 'text-primary', bg: 'bg-primary/10' },
+  { name: 'Китайский · индивидуально', emoji: '🇨🇳', price: '1 300 ₽', unit: 'занятие', color: 'text-secondary', bg: 'bg-secondary/10' },
+  { name: 'Театральное искусство', emoji: '🎭', price: '6 500 ₽', unit: '8 занятий', color: 'text-purple', bg: 'bg-purple/10' },
+  { name: 'Мини-сад', emoji: '🧸', price: '10 000 ₽', unit: 'абонемент · 4 посещения по 3 часа, по субботам', color: 'text-pink', bg: 'bg-pink/10' },
 ];
 
 const courses = [
@@ -277,6 +287,33 @@ const Index = () => {
               </Button>
             </div>
           ))}
+        </div>
+        </div>
+      </section>
+
+      {/* Prices */}
+      <section id="prices" className="py-16 section-purple">
+        <div className="container">
+        <SectionTitle emoji="💳" title="Прайс-лист" subtitle="Прозрачные цены без скрытых доплат" />
+        <div className="grid md:grid-cols-3 gap-6">
+          {prices.map((p) => (
+            <div
+              key={p.name}
+              className="bg-white rounded-3xl p-6 border-2 border-white card-hover shadow-md flex flex-col"
+            >
+              <div className={`w-14 h-14 rounded-2xl ${p.bg} grid place-items-center mb-4 text-2xl`}>
+                {p.emoji}
+              </div>
+              <h3 className="font-display font-bold text-lg mb-1">{p.name}</h3>
+              <p className="text-sm text-muted-foreground mb-4">{p.unit}</p>
+              <p className={`font-display text-3xl font-extrabold mt-auto ${p.color}`}>{p.price}</p>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mt-8">
+          <Button size="lg" className="rounded-full text-base font-bold h-14 px-8 hover-scale shadow-lg shadow-primary/30" asChild>
+            <a href="#contacts">Записаться на пробный урок</a>
+          </Button>
         </div>
         </div>
       </section>
