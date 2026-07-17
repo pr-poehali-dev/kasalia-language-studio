@@ -156,17 +156,6 @@ const Index = () => {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
-              size="sm"
-              className="rounded-full font-bold border-2 hidden md:flex"
-              asChild
-            >
-              <a href="/poster-all-in-one.png" download="Kasalia-vsya-info.png">
-                <Icon name="ImageDown" size={16} className="mr-1" />
-                Баннер студии
-              </a>
-            </Button>
             <StudentCabinet />
             <button
               className="lg:hidden grid place-items-center w-10 h-10 rounded-xl bg-muted"
@@ -188,14 +177,6 @@ const Index = () => {
                 {n.label}
               </a>
             ))}
-            <a
-              href="/poster-all-in-one.png"
-              download="Kasalia-vsya-info.png"
-              className="py-2 px-3 rounded-xl font-semibold hover:bg-muted flex items-center gap-2"
-            >
-              <Icon name="ImageDown" size={18} />
-              Баннер студии
-            </a>
           </nav>
         )}
       </header>
