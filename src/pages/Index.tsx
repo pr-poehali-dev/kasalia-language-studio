@@ -261,20 +261,6 @@ const Index = () => {
       <section id="courses" className="py-16">
         <div className="container">
         <SectionTitle emoji="📚" title="Наши курсы" subtitle="Выбери язык — открой новый мир" />
-        <div className="flex flex-wrap justify-center gap-3 -mt-4 mb-8">
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2" asChild>
-            <Link to="/print/courses" target="_blank">
-              <Icon name="FileDown" size={16} className="mr-1" />
-              Скачать список курсов
-            </Link>
-          </Button>
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2" asChild>
-            <a href="/poster-courses.png" download="Kasalia-kursy.png">
-              <Icon name="ImageDown" size={16} className="mr-1" />
-              Картинка для соцсетей
-            </a>
-          </Button>
-        </div>
         <div className="grid md:grid-cols-3 gap-6">
           {courses.map((c) => (
             <div
@@ -305,20 +291,6 @@ const Index = () => {
       <section id="prices" className="py-16 section-purple">
         <div className="container">
         <SectionTitle emoji="💳" title="Прайс-лист" subtitle="Прозрачные цены без скрытых доплат" />
-        <div className="flex flex-wrap justify-center gap-3 -mt-4 mb-8">
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2 bg-white" asChild>
-            <Link to="/print/price" target="_blank">
-              <Icon name="FileDown" size={16} className="mr-1" />
-              Скачать прайс-лист
-            </Link>
-          </Button>
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2 bg-white" asChild>
-            <a href="/poster-price.png" download="Kasalia-price.png">
-              <Icon name="ImageDown" size={16} className="mr-1" />
-              Картинка для соцсетей
-            </a>
-          </Button>
-        </div>
         <div className="grid md:grid-cols-3 gap-6">
           {prices.map((p) => (
             <div
@@ -370,20 +342,6 @@ const Index = () => {
       <section id="schedule" className="py-16 section-purple">
         <div className="container">
         <SectionTitle emoji="🗓️" title="Расписание · август" subtitle="Удобное время для будней и выходных" />
-        <div className="flex flex-wrap justify-center gap-3 -mt-4 mb-8">
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2 bg-white" asChild>
-            <Link to="/print/schedule" target="_blank">
-              <Icon name="FileDown" size={16} className="mr-1" />
-              Скачать расписание
-            </Link>
-          </Button>
-          <Button variant="outline" size="sm" className="rounded-full font-bold border-2 bg-white" asChild>
-            <a href="/poster-schedule.png" download="Kasalia-raspisanie.png">
-              <Icon name="ImageDown" size={16} className="mr-1" />
-              Картинка для соцсетей
-            </a>
-          </Button>
-        </div>
         <ScheduleList onSelect={setSelectedCourse} />
         </div>
       </section>
