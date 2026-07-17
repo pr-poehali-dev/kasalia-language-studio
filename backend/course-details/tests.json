@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "GET список всех курсов",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "GET курс по slug",
+      "method": "GET",
+      "path": "/?slug=english",
+      "expectedStatus": 200
+    },
+    {
+      "name": "GET несуществующий курс",
+      "method": "GET",
+      "path": "/?slug=unknown-course",
+      "expectedStatus": 404
+    }
+  ]
+}

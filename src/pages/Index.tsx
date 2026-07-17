@@ -16,6 +16,8 @@ import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blogPosts';
 
 const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
+const COURSE_DETAILS_URL = 'https://functions.poehali.dev/33a4f8af-112e-46b1-9986-3061871e4b13';
+const STUDENT_AUTH_URL = 'https://functions.poehali.dev/728bc52d-a39c-44ce-ab69-5c93ec031b38';
 
 const HERO_IMG =
   'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/a1ab755a-6797-4235-bfd5-375aa4882cd6.JPG';
@@ -32,16 +34,17 @@ const nav = [
 ];
 
 const prices = [
-  { name: 'Английский · групповое', emoji: '🇬🇧', price: '6 000 ₽', unit: '8 занятий', color: 'text-primary', bg: 'bg-primary/10' },
-  { name: 'Китайский · групповое', emoji: '🇨🇳', price: '6 500 ₽', unit: '8 занятий', color: 'text-secondary', bg: 'bg-secondary/10' },
-  { name: 'Английский · индивидуально', emoji: '🇬🇧', price: '1 100 ₽', unit: 'занятие', color: 'text-primary', bg: 'bg-primary/10' },
-  { name: 'Китайский · индивидуально', emoji: '🇨🇳', price: '1 300 ₽', unit: 'занятие', color: 'text-secondary', bg: 'bg-secondary/10' },
-  { name: 'Театральное искусство', emoji: '🎭', price: '6 500 ₽', unit: '8 занятий', color: 'text-purple', bg: 'bg-purple/10' },
-  { name: 'Мини-сад', emoji: '🧸', price: '10 000 ₽', unit: 'абонемент · 4 посещения по 3 часа, по субботам', color: 'text-pink', bg: 'bg-pink/10' },
+  { slug: 'english', name: 'Английский · групповое', emoji: '🇬🇧', price: '6 000 ₽', unit: '8 занятий', color: 'text-primary', bg: 'bg-primary/10' },
+  { slug: 'chinese', name: 'Китайский · групповое', emoji: '🇨🇳', price: '6 500 ₽', unit: '8 занятий', color: 'text-secondary', bg: 'bg-secondary/10' },
+  { slug: 'english', name: 'Английский · индивидуально', emoji: '🇬🇧', price: '1 100 ₽', unit: 'занятие', color: 'text-primary', bg: 'bg-primary/10' },
+  { slug: 'chinese', name: 'Китайский · индивидуально', emoji: '🇨🇳', price: '1 300 ₽', unit: 'занятие', color: 'text-secondary', bg: 'bg-secondary/10' },
+  { slug: 'teatr', name: 'Театральное искусство', emoji: '🎭', price: '6 500 ₽', unit: '8 занятий', color: 'text-purple', bg: 'bg-purple/10' },
+  { slug: 'mini-sad', name: 'Мини-сад', emoji: '🧸', price: '10 000 ₽', unit: 'абонемент · 4 посещения по 3 часа, по субботам', color: 'text-pink', bg: 'bg-pink/10' },
 ];
 
 const courses = [
   {
+    slug: 'english',
     lang: 'Английский',
     icon: 'Sparkles',
     color: 'bg-primary text-primary-foreground',
@@ -53,6 +56,7 @@ const courses = [
     border: 'border-primary/20',
   },
   {
+    slug: 'chinese',
     lang: 'Китайский',
     icon: 'Languages',
     color: 'bg-secondary text-secondary-foreground',
@@ -64,6 +68,7 @@ const courses = [
     border: 'border-secondary/20',
   },
   {
+    slug: 'mini-sad',
     lang: 'Мини-сад',
     icon: 'Baby',
     color: 'bg-purple text-white',
@@ -75,6 +80,7 @@ const courses = [
     border: 'border-purple/20',
   },
   {
+    slug: 'teatr',
     lang: 'Театральные постановки',
     icon: 'Drama',
     color: 'bg-purple text-white',
@@ -86,6 +92,7 @@ const courses = [
     border: 'border-purple/20',
   },
   {
+    slug: 'vyhodnoy',
     lang: 'Группа выходного дня',
     icon: 'Users2',
     color: 'bg-purple text-white',
@@ -121,9 +128,20 @@ interface ReviewItem {
   stars: number;
 }
 
+interface CourseDetails {
+  slug: string;
+  lang: string;
+  fullDescription: string;
+  teacherName: string;
+  teacherRole: string;
+  teacherPhoto: string;
+  photos: string[];
+}
+
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState('');
+  const [openCourseSlug, setOpenCourseSlug] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -265,27 +283,52 @@ const Index = () => {
           {courses.map((c) => (
             <div
               key={c.lang}
-              className={`relative rounded-[2rem] p-8 overflow-hidden card-hover shadow-md bg-white border-2 ${c.border}`}
+              onClick={() => setOpenCourseSlug(c.slug)}
+              className={`relative rounded-[2rem] p-8 overflow-hidden card-hover shadow-md bg-white border-2 ${c.border} cursor-pointer`}
             >
               <div className={`absolute -right-8 -top-8 w-48 h-48 rounded-full ${c.tint}`} />
               <span className="text-5xl mb-4 block relative">{c.emoji}</span>
               <h3 className="font-display text-3xl font-extrabold mb-2 relative">{c.lang}</h3>
               <p className={`font-bold text-sm mb-3 relative ${c.text}`}>{c.groups}</p>
               <p className="text-muted-foreground mb-6 relative">{c.desc}</p>
-              <Button
-                className={`rounded-full font-bold relative ${c.color} hover:opacity-90`}
-                onClick={() => setSelectedCourse(c.lang)}
-                asChild
-              >
-                <a href="#contacts">
-                  Записаться <Icon name="ArrowRight" size={18} className="ml-1" />
-                </a>
-              </Button>
+              <div className="flex items-center gap-3 relative">
+                <Button
+                  variant="outline"
+                  className="rounded-full font-bold border-2"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenCourseSlug(c.slug);
+                  }}
+                >
+                  Подробнее
+                </Button>
+                <Button
+                  className={`rounded-full font-bold ${c.color} hover:opacity-90`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedCourse(c.lang);
+                  }}
+                  asChild
+                >
+                  <a href="#contacts">
+                    Записаться <Icon name="ArrowRight" size={18} className="ml-1" />
+                  </a>
+                </Button>
+              </div>
             </div>
           ))}
         </div>
         </div>
       </section>
+
+      <CourseModal
+        slug={openCourseSlug}
+        onClose={() => setOpenCourseSlug(null)}
+        onEnroll={(lang) => {
+          setSelectedCourse(lang);
+          setOpenCourseSlug(null);
+        }}
+      />
 
       {/* Prices */}
       <section id="prices" className="py-16 section-purple">
@@ -704,48 +747,325 @@ const ReviewForm = ({ onSubmitted }: { onSubmitted: () => void }) => {
   );
 };
 
-const StudentCabinet = () => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <Button className="rounded-full font-bold gap-2 hover-scale">
-        <Icon name="GraduationCap" size={18} />
-        <span className="hidden sm:inline">Кабинет ученика</span>
-      </Button>
-    </DialogTrigger>
-    <DialogContent className="rounded-3xl">
-      <DialogHeader>
-        <DialogTitle className="font-display text-2xl flex items-center gap-2">
-          <span className="text-3xl">🎒</span> Кабинет ученика
-        </DialogTitle>
-      </DialogHeader>
-      <div className="space-y-4 pt-2">
-        <p className="text-sm text-muted-foreground">
-          Войдите, чтобы посмотреть материалы, домашние задания и расписание занятий.
-        </p>
-        <div className="space-y-2">
-          <Label htmlFor="login">Логин или телефон</Label>
-          <Input id="login" placeholder="+7 (___) ___-__-__" className="rounded-xl h-12" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="pass">Пароль</Label>
-          <Input id="pass" type="password" placeholder="••••••••" className="rounded-xl h-12" />
-        </div>
-        <Button className="w-full rounded-xl h-12 font-bold text-base">Войти</Button>
-        <div className="grid grid-cols-3 gap-3 pt-2">
-          {[
-            { i: 'BookOpen', t: 'Материалы' },
-            { i: 'Calendar', t: 'Расписание' },
-            { i: 'ClipboardCheck', t: 'Задания' },
-          ].map((x) => (
-            <div key={x.t} className="bg-muted rounded-2xl p-4 text-center">
-              <Icon name={x.i} size={24} className="mx-auto text-primary mb-1" />
-              <p className="text-xs font-semibold">{x.t}</p>
+const CourseModal = ({
+  slug,
+  onClose,
+  onEnroll,
+}: {
+  slug: string | null;
+  onClose: () => void;
+  onEnroll: (lang: string) => void;
+}) => {
+  const [details, setDetails] = useState<CourseDetails | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!slug) {
+      setDetails(null);
+      return;
+    }
+    setLoading(true);
+    fetch(`${COURSE_DETAILS_URL}?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => setDetails(data.course || null))
+      .finally(() => setLoading(false));
+  }, [slug]);
+
+  const course = courses.find((c) => c.slug === slug);
+  const coursePrices = prices.filter((p) => p.slug === slug);
+  const [schedule, setSchedule] = useState<ScheduleItem[]>([]);
+
+  useEffect(() => {
+    if (!slug) return;
+    fetch(SCHEDULE_URL)
+      .then((res) => res.json())
+      .then((data) => setSchedule(data.items || []));
+  }, [slug]);
+
+  const courseSchedule = course
+    ? schedule.filter((s) => s.course.toLowerCase().includes(course.lang.toLowerCase().slice(0, 5)))
+    : [];
+
+  return (
+    <Dialog open={!!slug} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="rounded-3xl max-w-lg max-h-[85vh] overflow-y-auto">
+        {loading && <div className="py-10 text-center text-muted-foreground">Загружаем...</div>}
+        {!loading && course && (
+          <>
+            <DialogHeader>
+              <DialogTitle className="font-display text-2xl flex items-center gap-2">
+                <span className="text-3xl">{course.emoji}</span> {course.lang}
+              </DialogTitle>
+            </DialogHeader>
+            <div className="space-y-5 pt-2">
+              {details?.photos && details.photos.length > 0 && (
+                <div className="grid grid-cols-2 gap-2">
+                  {details.photos.map((url, i) => (
+                    <img
+                      key={i}
+                      src={url}
+                      alt={`${course.lang} — фото ${i + 1}`}
+                      className="rounded-2xl w-full h-32 object-cover"
+                    />
+                  ))}
+                </div>
+              )}
+
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {details?.fullDescription || course.desc}
+              </p>
+
+              {coursePrices.length > 0 && (
+                <div>
+                  <p className="font-display font-bold text-sm mb-2 flex items-center gap-1">
+                    <Icon name="Wallet" size={16} /> Стоимость
+                  </p>
+                  <div className="space-y-2">
+                    {coursePrices.map((p, i) => (
+                      <div key={i} className="flex items-center justify-between bg-muted rounded-xl px-4 py-2">
+                        <span className="text-sm">{p.unit}</span>
+                        <span className={`font-display font-bold ${p.color}`}>{p.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {courseSchedule.length > 0 && (
+                <div>
+                  <p className="font-display font-bold text-sm mb-2 flex items-center gap-1">
+                    <Icon name="Calendar" size={16} /> Ближайшее расписание
+                  </p>
+                  <div className="space-y-2">
+                    {courseSchedule.map((s) => (
+                      <div key={s.id} className="flex items-center gap-3 bg-muted rounded-xl px-4 py-2 text-sm">
+                        <span className="font-semibold text-muted-foreground w-20">{s.days}</span>
+                        <span className={`font-display font-bold ${s.color}`}>{s.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {details?.teacherName && (
+                <div>
+                  <p className="font-display font-bold text-sm mb-2 flex items-center gap-1">
+                    <Icon name="GraduationCap" size={16} /> Преподаватель
+                  </p>
+                  <div className="flex items-center gap-3 bg-muted rounded-xl px-4 py-3">
+                    {details.teacherPhoto && (
+                      <img
+                        src={details.teacherPhoto}
+                        alt={details.teacherName}
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                    )}
+                    <div>
+                      <p className="font-semibold text-sm">{details.teacherName}</p>
+                      <p className="text-xs text-muted-foreground">{details.teacherRole}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <Button
+                className={`w-full rounded-xl h-12 font-bold text-base ${course.color}`}
+                onClick={() => onEnroll(course.lang)}
+                asChild
+              >
+                <a href="#contacts">Записаться на пробный урок</a>
+              </Button>
             </div>
-          ))}
-        </div>
-      </div>
-    </DialogContent>
-  </Dialog>
-);
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+const StudentCabinet = () => {
+  const [open, setOpen] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [session, setSession] = useState<{ token: string; student: { fullName: string; kidName: string; course: string } } | null>(null);
+  const [cabinet, setCabinet] = useState<{ materials: any[]; homework: any[] } | null>(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const saved = localStorage.getItem('kasalia_session');
+    if (saved) {
+      try {
+        setSession(JSON.parse(saved));
+      } catch {
+        /* ignore */
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (session?.token) {
+      fetch(STUDENT_AUTH_URL, { headers: { 'X-Session-Token': session.token } })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) {
+            setSession(null);
+            localStorage.removeItem('kasalia_session');
+          } else {
+            setCabinet(data);
+          }
+        });
+    }
+  }, [session?.token]);
+
+  const login = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    if (!phone.trim() || !password.trim()) {
+      setError('Заполните телефон и пароль');
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(STUDENT_AUTH_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || 'Не удалось войти');
+        return;
+      }
+      setSession(data);
+      localStorage.setItem('kasalia_session', JSON.stringify(data));
+      toast({ title: `Добро пожаловать, ${data.student.fullName}! 🎉` });
+    } catch {
+      setError('Ошибка сети, попробуйте позже');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    setSession(null);
+    setCabinet(null);
+    localStorage.removeItem('kasalia_session');
+    setPhone('');
+    setPassword('');
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button className="rounded-full font-bold gap-2 hover-scale">
+          <Icon name="GraduationCap" size={18} />
+          <span className="hidden sm:inline">Кабинет ученика</span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="rounded-3xl max-h-[85vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="font-display text-2xl flex items-center gap-2">
+            <span className="text-3xl">🎒</span> Кабинет ученика
+          </DialogTitle>
+        </DialogHeader>
+
+        {!session && (
+          <form onSubmit={login} className="space-y-4 pt-2">
+            <p className="text-sm text-muted-foreground">
+              Войдите, чтобы посмотреть материалы и домашние задания.
+            </p>
+            <div className="space-y-2">
+              <Label htmlFor="login">Телефон</Label>
+              <Input
+                id="login"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+7 (___) ___-__-__"
+                className="rounded-xl h-12"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="pass">Пароль</Label>
+              <Input
+                id="pass"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="rounded-xl h-12"
+              />
+            </div>
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <Button type="submit" disabled={loading} className="w-full rounded-xl h-12 font-bold text-base">
+              {loading ? 'Входим...' : 'Войти'}
+            </Button>
+            <p className="text-xs text-muted-foreground text-center">
+              Данные для входа выдаёт преподаватель после записи на курс
+            </p>
+          </form>
+        )}
+
+        {session && (
+          <div className="space-y-5 pt-2">
+            <div className="flex items-center justify-between bg-muted rounded-2xl p-4">
+              <div>
+                <p className="font-display font-bold">{session.student.kidName || session.student.fullName}</p>
+                <p className="text-xs text-muted-foreground">{session.student.course}</p>
+              </div>
+              <Button variant="ghost" size="sm" onClick={logout} className="rounded-full">
+                <Icon name="LogOut" size={16} className="mr-1" /> Выйти
+              </Button>
+            </div>
+
+            <div>
+              <p className="font-display font-bold text-sm mb-2 flex items-center gap-1">
+                <Icon name="BookOpen" size={16} /> Материалы
+              </p>
+              {cabinet?.materials?.length ? (
+                <div className="space-y-2">
+                  {cabinet.materials.map((m) => (
+                    <div key={m.id} className="bg-muted rounded-xl p-3">
+                      <p className="font-semibold text-sm">{m.title}</p>
+                      {m.description && <p className="text-xs text-muted-foreground mt-1">{m.description}</p>}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">Материалов пока нет</p>
+              )}
+            </div>
+
+            <div>
+              <p className="font-display font-bold text-sm mb-2 flex items-center gap-1">
+                <Icon name="ClipboardCheck" size={16} /> Домашние задания
+              </p>
+              {cabinet?.homework?.length ? (
+                <div className="space-y-2">
+                  {cabinet.homework.map((h) => (
+                    <div key={h.id} className="bg-muted rounded-xl p-3">
+                      <div className="flex items-center justify-between">
+                        <p className="font-semibold text-sm">{h.title}</p>
+                        {h.dueDate && (
+                          <span className="text-xs text-muted-foreground">
+                            до {new Date(h.dueDate).toLocaleDateString('ru-RU')}
+                          </span>
+                        )}
+                      </div>
+                      {h.description && <p className="text-xs text-muted-foreground mt-1">{h.description}</p>}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">Заданий пока нет</p>
+              )}
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 export default Index;

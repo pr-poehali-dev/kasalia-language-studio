@@ -1,0 +1,37 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "POST без телефона и пароля",
+      "method": "POST",
+      "path": "/",
+      "body": {},
+      "expectedStatus": 400
+    },
+    {
+      "name": "POST с неверным паролем",
+      "method": "POST",
+      "path": "/",
+      "body": {"phone": "+70000000000", "password": "wrongpass"},
+      "expectedStatus": 401
+    },
+    {
+      "name": "GET без токена",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 401
+    },
+    {
+      "name": "GET с неверным токеном",
+      "method": "GET",
+      "path": "/",
+      "headers": {"X-Session-Token": "invalid-token"},
+      "expectedStatus": 401
+    }
+  ]
+}
