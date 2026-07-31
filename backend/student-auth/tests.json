@@ -32,6 +32,19 @@
       "path": "/",
       "headers": {"X-Session-Token": "invalid-token"},
       "expectedStatus": 401
+    },
+    {
+      "name": "GET список учеников без пароля преподавателя",
+      "method": "GET",
+      "path": "/?action=students",
+      "expectedStatus": 403
+    },
+    {
+      "name": "POST add-student без пароля преподавателя",
+      "method": "POST",
+      "path": "/?action=add-student",
+      "body": {"fullName": "Test", "phone": "+70000000001", "password": "test1234"},
+      "expectedStatus": 403
     }
   ]
 }
