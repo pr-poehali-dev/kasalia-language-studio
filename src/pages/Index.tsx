@@ -241,14 +241,6 @@ const Index = () => {
               alt="Дети учат языки в студии Kasalia"
               className="relative rounded-[3rem] shadow-2xl w-full object-cover"
             />
-
-            <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 animate-wiggle">
-              <span className="text-2xl">🎉</span>
-              <div className="leading-tight">
-                <p className="font-display font-bold text-sm">Первый урок</p>
-                <p className="text-xs text-muted-foreground">бесплатно!</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
