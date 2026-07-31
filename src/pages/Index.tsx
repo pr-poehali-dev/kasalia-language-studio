@@ -459,6 +459,13 @@ const Index = () => {
                 <Icon name={s} size={18} />
               </a>
             ))}
+            <Link
+              to="/teacher"
+              title="Кабинет преподавателя"
+              className="w-10 h-10 rounded-xl bg-muted grid place-items-center hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Icon name="Lock" size={16} />
+            </Link>
           </div>
         </div>
       </footer>
