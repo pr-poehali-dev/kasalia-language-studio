@@ -5,7 +5,7 @@ import psycopg2
 
 def handler(event: dict, context) -> dict:
     '''
-    Управляет отзывами родителей студии Kasalia.
+    Управляет отзывами родителей клуба Kasalia.
     Args: event с httpMethod (GET — список одобренных отзывов, POST — родитель оставляет отзыв на модерацию); context с request_id.
     Returns: HTTP-ответ со списком отзывов или результатом отправки.
     '''

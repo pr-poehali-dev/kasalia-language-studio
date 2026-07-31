@@ -5,7 +5,7 @@ import urllib.request
 
 def handler(event: dict, context) -> dict:
     '''
-    Принимает заявку с сайта студии Kasalia и отправляет её на почту через Resend.
+    Принимает заявку с сайта клуба Kasalia и отправляет её на почту через Resend.
     Args: event с httpMethod, body (name, phone, comment); context с request_id.
     Returns: HTTP-ответ со статусом отправки заявки.
     '''

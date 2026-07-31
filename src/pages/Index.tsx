@@ -23,7 +23,7 @@ const HERO_IMG =
   'https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/a1ab755a-6797-4235-bfd5-375aa4882cd6.JPG';
 
 const nav = [
-  { label: 'О студии', href: '#about' },
+  { label: 'О клубе', href: '#about' },
   { label: 'Курсы', href: '#courses' },
   { label: 'Цены', href: '#prices' },
   { label: 'Преподаватели', href: '#teachers' },
@@ -151,7 +151,7 @@ const Index = () => {
           <a href="#" className="flex items-center">
             <img
               src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/4fc5576b-3629-4a6b-aaae-c60e197389cd.jpg"
-              alt="Студия Kasalia"
+              alt="Клуб Kasalia"
               className="h-14 w-auto object-contain"
             />
           </a>
@@ -210,7 +210,7 @@ const Index = () => {
               <span className="text-secondary">гениев</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-md">
-              Студия Kasalia превращает уроки в игру. Дошкольники и школьники учат языки с
+              Клуб Kasalia превращает уроки в игру. Дошкольники и школьники учат языки с
               удовольствием, а родители видят результат.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -238,7 +238,7 @@ const Index = () => {
             {/* Фото детей — фон */}
             <img
               src={HERO_IMG}
-              alt="Дети учат языки в студии Kasalia"
+              alt="Дети учат языки в клубе Kasalia"
               className="relative rounded-[3rem] shadow-2xl w-full object-cover"
             />
           </div>
@@ -392,7 +392,7 @@ const Index = () => {
       {/* Blog */}
       <section id="blog" className="py-16 section-teal">
         <div className="container">
-        <SectionTitle emoji="✍️" title="Блог студии" subtitle="Полезное для детей и родителей" />
+        <SectionTitle emoji="✍️" title="Блог клуба" subtitle="Полезное для детей и родителей" />
         <div className="grid md:grid-cols-3 gap-6">
           {blogPosts.map((b) => (
             <Link
@@ -440,11 +440,11 @@ const Index = () => {
           <div className="flex items-center">
             <img
               src="https://cdn.poehali.dev/projects/916f0912-2e1a-441b-ba48-3e1b39731153/bucket/4fc5576b-3629-4a6b-aaae-c60e197389cd.jpg"
-              alt="Студия Kasalia"
+              alt="Клуб Kasalia"
               className="h-10 w-auto object-contain"
             />
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 Языковая студия Kasalia. Учим с любовью.</p>
+          <p className="text-sm text-muted-foreground">© 2026 Языковой клуб Kasalia. Учим с любовью.</p>
           <div className="flex gap-3">
             {['Send', 'Instagram', 'Youtube'].map((s) => (
               <a key={s} href="#" className="w-10 h-10 rounded-xl bg-muted grid place-items-center hover:bg-primary hover:text-primary-foreground transition-colors">

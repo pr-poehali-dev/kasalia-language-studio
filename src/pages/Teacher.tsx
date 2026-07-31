@@ -100,7 +100,7 @@ const Teacher = () => {
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <div className="w-full max-w-sm bg-white rounded-3xl shadow-xl border-2 border-border/40 p-8">
           <div className="text-center mb-6">
-            <img src={LOGO_URL} alt="Студия Kasalia" className="h-14 w-auto object-contain mx-auto mb-4" />
+            <img src={LOGO_URL} alt="Клуб Kasalia" className="h-14 w-auto object-contain mx-auto mb-4" />
             <h1 className="font-display text-2xl font-extrabold">Кабинет преподавателя</h1>
             <p className="text-sm text-muted-foreground mt-1">Введите пароль для входа</p>
           </div>
@@ -138,7 +138,7 @@ const Teacher = () => {
       <header className="sticky top-0 z-40 bg-white border-b border-border/50">
         <div className="container flex items-center justify-between py-4">
           <div className="flex items-center gap-3">
-            <img src={LOGO_URL} alt="Студия Kasalia" className="h-10 w-auto object-contain" />
+            <img src={LOGO_URL} alt="Клуб Kasalia" className="h-10 w-auto object-contain" />
             <span className="font-display font-bold">Кабинет преподавателя</span>
           </div>
           <div className="flex items-center gap-2">

@@ -5,7 +5,7 @@ import psycopg2
 
 def handler(event: dict, context) -> dict:
     '''
-    Управляет расписанием занятий студии Kasalia.
+    Управляет расписанием занятий клуба Kasalia.
     Args: event с httpMethod (GET доступен всем, POST/PUT/DELETE требуют X-Admin-Token), body, queryStringParameters; context с request_id.
     Returns: HTTP-ответ со списком занятий или результатом изменения.
     '''

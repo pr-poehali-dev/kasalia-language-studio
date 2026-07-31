@@ -11,7 +11,7 @@ const PrivacyPolicy = () => {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
         <div className="container flex items-center justify-between py-4">
           <Link to="/" className="flex items-center">
-            <img src={LOGO_URL} alt="Студия Kasalia" className="h-12 w-auto object-contain" />
+            <img src={LOGO_URL} alt="Клуб Kasalia" className="h-12 w-auto object-contain" />
           </Link>
           <Button variant="outline" className="rounded-full font-bold border-2" asChild>
             <Link to="/">
@@ -24,21 +24,21 @@ const PrivacyPolicy = () => {
 
       <article className="container max-w-2xl py-12">
         <h1 className="font-display text-3xl sm:text-4xl font-extrabold mb-2">Политика конфиденциальности</h1>
-        <p className="text-muted-foreground mb-8">Языковая студия Kasalia · действует с 31 июля 2026 года</p>
+        <p className="text-muted-foreground mb-8">Языковой клуб Kasalia · действует с 31 июля 2026 года</p>
 
         <div className="space-y-6 text-foreground/90 leading-relaxed">
           <section>
             <h2 className="font-display font-bold text-xl mb-2">1. Общие положения</h2>
             <p>
               Настоящая политика конфиденциальности определяет порядок обработки и защиты персональных данных
-              пользователей сайта студии Kasalia (далее — «Студия»), которые пользователь предоставляет при
+              пользователей сайта клуба Kasalia (далее — «Клуб»), которые пользователь предоставляет при
               заполнении форм обратной связи, заявок на пробный урок или регистрации в личном кабинете.
             </p>
           </section>
 
           <section>
             <h2 className="font-display font-bold text-xl mb-2">2. Какие данные мы собираем</h2>
-            <p>Студия может собирать следующие персональные данные:</p>
+            <p>Клуб может собирать следующие персональные данные:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>Имя родителя и/или ребёнка</li>
               <li>Номер телефона</li>
@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
             <p>Персональные данные используются исключительно для:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1">
               <li>Связи с пользователем для записи на пробный урок и консультации</li>
-              <li>Информирования о расписании, курсах и специальных предложениях студии</li>
+              <li>Информирования о расписании, курсах и специальных предложениях клуба</li>
               <li>Предоставления доступа к личному кабинету ученика</li>
             </ul>
           </section>
@@ -60,7 +60,7 @@ const PrivacyPolicy = () => {
           <section>
             <h2 className="font-display font-bold text-xl mb-2">4. Передача данных третьим лицам</h2>
             <p>
-              Студия не передаёт персональные данные пользователей третьим лицам, за исключением случаев,
+              Клуб не передаёт персональные данные пользователей третьим лицам, за исключением случаев,
               предусмотренных законодательством Российской Федерации.
             </p>
           </section>
@@ -77,7 +77,7 @@ const PrivacyPolicy = () => {
             <h2 className="font-display font-bold text-xl mb-2">6. Права пользователя</h2>
             <p>
               Пользователь вправе в любой момент отозвать согласие на обработку персональных данных, направив
-              соответствующий запрос на почту студии, указанную в разделе «Контакты» на сайте.
+              соответствующий запрос на почту клуба, указанную в разделе «Контакты» на сайте.
             </p>
           </section>
 
@@ -93,8 +93,8 @@ const PrivacyPolicy = () => {
 
       <footer className="border-t border-border/50 py-10">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
-          <img src={LOGO_URL} alt="Студия Kasalia" className="h-10 w-auto object-contain" />
-          <p className="text-sm text-muted-foreground">© 2026 Языковая студия Kasalia. Учим с любовью.</p>
+          <img src={LOGO_URL} alt="Клуб Kasalia" className="h-10 w-auto object-contain" />
+          <p className="text-sm text-muted-foreground">© 2026 Языковой клуб Kasalia. Учим с любовью.</p>
         </div>
       </footer>
     </div>

@@ -21,7 +21,7 @@ const BlogPost = () => {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
         <div className="container flex items-center justify-between py-4">
           <Link to="/" className="flex items-center">
-            <img src={LOGO_URL} alt="Студия Kasalia" className="h-12 w-auto object-contain" />
+            <img src={LOGO_URL} alt="Клуб Kasalia" className="h-12 w-auto object-contain" />
           </Link>
           <Button variant="outline" className="rounded-full font-bold border-2" asChild>
             <Link to="/#blog">
@@ -47,7 +47,7 @@ const BlogPost = () => {
 
         <div className="mt-12 p-8 rounded-[2rem] bg-primary text-primary-foreground text-center">
           <h2 className="font-display text-2xl font-extrabold mb-2">Понравилась статья?</h2>
-          <p className="opacity-90 mb-6">Запишите ребёнка на пробный урок со скидкой 50% в студии Kasalia</p>
+          <p className="opacity-90 mb-6">Запишите ребёнка на пробный урок со скидкой 50% в клубе Kasalia</p>
           <Button size="lg" variant="secondary" className="rounded-full font-bold" asChild>
             <Link to="/#contacts">Записаться на пробный урок</Link>
           </Button>
@@ -77,8 +77,8 @@ const BlogPost = () => {
 
       <footer className="border-t border-border/50 py-10">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
-          <img src={LOGO_URL} alt="Студия Kasalia" className="h-10 w-auto object-contain" />
-          <p className="text-sm text-muted-foreground">© 2026 Языковая студия Kasalia. Учим с любовью.</p>
+          <img src={LOGO_URL} alt="Клуб Kasalia" className="h-10 w-auto object-contain" />
+          <p className="text-sm text-muted-foreground">© 2026 Языковой клуб Kasalia. Учим с любовью.</p>
         </div>
       </footer>
     </div>

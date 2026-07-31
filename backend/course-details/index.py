@@ -5,7 +5,7 @@ import psycopg2
 
 def handler(event: dict, context) -> dict:
     '''
-    Возвращает подробную информацию о курсе студии Kasalia: описание, преподавателя и фотогалерею.
+    Возвращает подробную информацию о курсе клуба Kasalia: описание, преподавателя и фотогалерею.
     Args: event с httpMethod, queryStringParameters (slug); context с request_id.
     Returns: HTTP-ответ с деталями курса и списком фото.
     '''

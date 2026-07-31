@@ -37,7 +37,7 @@ const PrintLayout = ({ title, subtitle, emoji, children }: PrintLayoutProps) => 
         {/* Sheet */}
         <div className="bg-white rounded-[2rem] shadow-xl border-2 border-border/50 p-8 sm:p-12 print:shadow-none print:border-0 print:rounded-none print:p-0">
           <div className="flex items-center justify-between mb-8 pb-6 border-b-2 border-border/40">
-            <img src={LOGO_URL} alt="Студия Kasalia" className="h-14 w-auto object-contain" />
+            <img src={LOGO_URL} alt="Клуб Kasalia" className="h-14 w-auto object-contain" />
             <div className="text-right">
               <p className="text-xs font-bold text-muted-foreground">Томск, ул. Никитина, 15а</p>
               <p className="text-xs font-bold text-muted-foreground">+7 (913) 850-33-38</p>
