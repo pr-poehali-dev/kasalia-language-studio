@@ -11,6 +11,7 @@ import CoursesPrint from "./pages/CoursesPrint";
 import SchedulePrint from "./pages/SchedulePrint";
 import BlogPost from "./pages/BlogPost";
 import Teacher from "./pages/Teacher";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/print/schedule" element={<SchedulePrint />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/teacher" element={<Teacher />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
