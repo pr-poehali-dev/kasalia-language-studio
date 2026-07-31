@@ -110,13 +110,21 @@ def handler(event: dict, context) -> dict:
 
                     password_hash = hashlib.sha256(password.encode()).hexdigest()
 
-                    with conn.cursor() as cur:
-                        cur.execute(
-                            f'INSERT INTO {schema}.students (full_name, kid_name, phone, password_hash, course) VALUES (%s, %s, %s, %s, %s) RETURNING id',
-                            (full_name, kid_name, phone, password_hash, course),
-                        )
-                        new_id = cur.fetchone()[0]
-                        conn.commit()
+                    try:
+                        with conn.cursor() as cur:
+                            cur.execute(
+                                f'INSERT INTO {schema}.students (full_name, kid_name, phone, password_hash, course) VALUES (%s, %s, %s, %s, %s) RETURNING id',
+                                (full_name, kid_name, phone, password_hash, course),
+                            )
+                            new_id = cur.fetchone()[0]
+                            conn.commit()
+                    except psycopg2.errors.UniqueViolation:
+                        conn.rollback()
+                        return {
+                            'statusCode': 400,
+                            'headers': {**cors, 'Content-Type': 'application/json'},
+                            'body': json.dumps({'error': 'Ученик с таким телефоном уже добавлен'}),
+                        }
 
                     return {
                         'statusCode': 200,
