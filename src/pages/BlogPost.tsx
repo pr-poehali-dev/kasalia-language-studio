@@ -47,7 +47,7 @@ const BlogPost = () => {
 
         <div className="mt-12 p-8 rounded-[2rem] bg-primary text-primary-foreground text-center">
           <h2 className="font-display text-2xl font-extrabold mb-2">Понравилась статья?</h2>
-          <p className="opacity-90 mb-6">Запишите ребёнка на бесплатный пробный урок в студии Kasalia</p>
+          <p className="opacity-90 mb-6">Запишите ребёнка на пробный урок со скидкой 50% в студии Kasalia</p>
           <Button size="lg" variant="secondary" className="rounded-full font-bold" asChild>
             <Link to="/#contacts">Записаться на пробный урок</Link>
           </Button>

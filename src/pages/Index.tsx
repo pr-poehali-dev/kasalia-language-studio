@@ -427,7 +427,7 @@ const Index = () => {
           <div className="absolute right-24 top-6 w-32 h-32 rounded-full bg-accent/40" />
           <div className="relative grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="font-display text-4xl font-extrabold mb-4">Запишитесь на бесплатный урок 🎈</h2>
+              <h2 className="font-display text-4xl font-extrabold mb-4">Запишитесь на пробный урок со скидкой 50% 🎈</h2>
               <p className="text-lg opacity-90 mb-8">
                 Оставьте контакты — мы подберём удобное время и группу для вашего ребёнка.
               </p>
