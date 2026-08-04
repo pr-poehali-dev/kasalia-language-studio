@@ -425,8 +425,8 @@ const Index = () => {
               </p>
               <div className="flex flex-col gap-4">
                 <ContactItem icon="MapPin" text="Томск, ул. Никитина, 15а" />
-                <ContactItem icon="Phone" text="+7 (913) 850-33-38" />
-                <ContactItem icon="Mail" text="kasalia@yandex.ru" />
+                <ContactItem icon="Phone" text="+7-913-878-18-25" />
+                <ContactItem icon="Mail" text="kasaliaclub@yandex.ru" />
               </div>
             </div>
             <LeadForm selectedCourse={selectedCourse} onCourseChange={setSelectedCourse} />

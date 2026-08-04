@@ -40,8 +40,8 @@ const PrintLayout = ({ title, subtitle, emoji, children }: PrintLayoutProps) => 
             <img src={LOGO_URL} alt="Клуб Kasalia" className="h-14 w-auto object-contain" />
             <div className="text-right">
               <p className="text-xs font-bold text-muted-foreground">Томск, ул. Никитина, 15а</p>
-              <p className="text-xs font-bold text-muted-foreground">+7 (913) 850-33-38</p>
-              <p className="text-xs font-bold text-muted-foreground">kasalia@yandex.ru</p>
+              <p className="text-xs font-bold text-muted-foreground">+7-913-878-18-25</p>
+              <p className="text-xs font-bold text-muted-foreground">kasaliaclub@yandex.ru</p>
             </div>
           </div>
 
@@ -55,7 +55,7 @@ const PrintLayout = ({ title, subtitle, emoji, children }: PrintLayoutProps) => 
 
           <div className="mt-12 pt-6 border-t-2 border-border/40 text-center">
             <p className="font-display font-bold text-lg">
-              Записаться: <span className="text-primary">+7 (913) 850-33-38</span>
+              Записаться: <span className="text-primary">+7-913-878-18-25</span>
             </p>
             <p className="text-sm text-muted-foreground mt-1">kasalia.ru · Учим с любовью 🎈</p>
           </div>
