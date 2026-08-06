@@ -1,6 +1,7 @@
 import json
 import os
 import urllib.request
+import urllib.error
 
 
 def handler(event: dict, context) -> dict:
@@ -64,8 +65,16 @@ def handler(event: dict, context) -> dict:
         method='POST',
     )
 
-    with urllib.request.urlopen(req) as resp:
-        resp.read()
+    try:
+        with urllib.request.urlopen(req) as resp:
+            resp.read()
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode('utf-8', errors='replace')
+        return {
+            'statusCode': 502,
+            'headers': {**cors, 'Content-Type': 'application/json'},
+            'body': json.dumps({'error': 'Не удалось отправить заявку на почту', 'details': error_body}),
+        }
 
     return {
         'statusCode': 200,
