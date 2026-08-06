@@ -15,6 +15,10 @@ import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blogPosts';
 import GallerySection from '@/components/gallery/GallerySection';
+import { QRCodeSVG } from 'qrcode.react';
+
+const MAX_URL = 'https://max.ru/join/Ri7uwDr4VnhLDf3RmBoTSTSu_yEbbnuF1Ilt0LvQIlI';
+const TELEGRAM_URL = 'https://t.me/kasalia_woman_mama';
 
 const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
 const COURSE_DETAILS_URL = 'https://functions.poehali.dev/33a4f8af-112e-46b1-9986-3061871e4b13';
@@ -435,6 +439,27 @@ const Index = () => {
                 <ContactItem icon="Phone" text="+7-913-878-18-25" />
                 <ContactItem icon="Mail" text="kasaliaclub@yandex.ru" />
               </div>
+
+              <div className="flex items-center gap-4 mt-8">
+                <div className="bg-white rounded-2xl p-2 shrink-0">
+                  <QRCodeSVG value={typeof window !== 'undefined' ? window.location.origin : 'https://kasalia.ru'} size={84} />
+                </div>
+                <div>
+                  <p className="font-display font-bold text-sm mb-2">Мы в мессенджерах</p>
+                  <div className="flex gap-2">
+                    <Button size="sm" variant="secondary" className="rounded-full font-bold" asChild>
+                      <a href={MAX_URL} target="_blank" rel="noreferrer">
+                        <Icon name="MessageCircle" size={16} className="mr-1" /> MAX
+                      </a>
+                    </Button>
+                    <Button size="sm" variant="secondary" className="rounded-full font-bold" asChild>
+                      <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">
+                        <Icon name="Send" size={16} className="mr-1" /> Telegram
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
             <LeadForm selectedCourse={selectedCourse} onCourseChange={setSelectedCourse} />
           </div>
@@ -453,7 +478,25 @@ const Index = () => {
           </div>
           <p className="text-sm text-muted-foreground">© 2026 Языковой клуб Kasalia. Учим с любовью.</p>
           <div className="flex gap-3">
-            {['Send', 'Instagram', 'Youtube'].map((s) => (
+            <a
+              href={MAX_URL}
+              target="_blank"
+              rel="noreferrer"
+              title="Мы в MAX"
+              className="w-10 h-10 rounded-xl bg-muted grid place-items-center hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Icon name="MessageCircle" size={18} />
+            </a>
+            <a
+              href={TELEGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              title="Мы в Telegram"
+              className="w-10 h-10 rounded-xl bg-muted grid place-items-center hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              <Icon name="Send" size={18} />
+            </a>
+            {['Instagram', 'Youtube'].map((s) => (
               <a key={s} href="#" className="w-10 h-10 rounded-xl bg-muted grid place-items-center hover:bg-primary hover:text-primary-foreground transition-colors">
                 <Icon name={s} size={18} />
               </a>
