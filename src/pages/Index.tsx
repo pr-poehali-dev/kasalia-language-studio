@@ -14,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blogPosts';
+import GallerySection from '@/components/gallery/GallerySection';
 
 const LEAD_URL = 'https://functions.poehali.dev/ad987ba9-5309-4dde-bca4-4b2f991cc308';
 const COURSE_DETAILS_URL = 'https://functions.poehali.dev/33a4f8af-112e-46b1-9986-3061871e4b13';
@@ -28,6 +29,7 @@ const nav = [
   { label: 'Цены', href: '#prices' },
   { label: 'Преподаватели', href: '#teachers' },
   { label: 'Расписание', href: '#schedule' },
+  { label: 'Галерея', href: '#gallery' },
   { label: 'Отзывы', href: '#reviews' },
   { label: 'Блог', href: '#blog' },
   { label: 'Контакты', href: '#contacts' },
@@ -382,6 +384,9 @@ const Index = () => {
         <ScheduleList onSelect={setSelectedCourse} />
         </div>
       </section>
+
+      {/* Gallery */}
+      <GallerySection />
 
       {/* Reviews */}
       <section id="reviews" className="py-16 section-pink">

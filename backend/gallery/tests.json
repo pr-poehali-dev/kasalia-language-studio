@@ -1,0 +1,33 @@
+{
+  "tests": [
+    {
+      "name": "CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Список медиа",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Запрет добавления без пароля",
+      "method": "POST",
+      "path": "/",
+      "body": {"mediaType": "photo", "url": "https://example.com/test.jpg"},
+      "expectedStatus": 403,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Запрет удаления без пароля",
+      "method": "DELETE",
+      "path": "/?id=1",
+      "expectedStatus": 403,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
