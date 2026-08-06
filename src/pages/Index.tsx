@@ -39,7 +39,9 @@ const prices = [
   { slug: 'english', name: 'Английский · индивидуально', emoji: '🇬🇧', price: '1 100 ₽', unit: 'занятие', color: 'text-primary', bg: 'bg-primary/10' },
   { slug: 'chinese', name: 'Китайский · индивидуально', emoji: '🇨🇳', price: '1 300 ₽', unit: 'занятие', color: 'text-secondary', bg: 'bg-secondary/10' },
   { slug: 'teatr', name: 'Театральное искусство', emoji: '🎭', price: '6 500 ₽', unit: '8 занятий', color: 'text-purple', bg: 'bg-purple/10' },
+  { slug: 'vyhodnoy', name: 'Группа выходного дня', emoji: '🎈', price: '6 500 ₽', unit: '8 занятий', color: 'text-purple', bg: 'bg-purple/10' },
   { slug: 'mini-sad', name: 'Мини-сад', emoji: '🧸', price: '7 500 ₽', unit: 'абонемент · 4 посещения по 3 часа, по субботам', color: 'text-pink', bg: 'bg-pink/10' },
+  { slug: 'mini-sad', name: 'Мини-сад · разовое посещение', emoji: '🧸', price: '2 500 ₽', unit: '1 посещение', color: 'text-pink', bg: 'bg-pink/10' },
 ];
 
 const courses = [
